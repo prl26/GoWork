@@ -1,0 +1,8 @@
+2023/07/11 02:07:55 openbitbrowser.go:55: 请求BIt: {"id":"9c7e4790ee804e509e6b5dd9deb20bd1","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/11 02:07:55 openbitbrowser.go:71: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:52437/devtools/browser/2665ec8c-6785-475b-b4f6-95528588a578","http":"127.0.0.1:52437","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":401,"name":"jinniu_3-001","remark":"jinniu_3-001","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/11 02:07:56 initwd.go:41: http://127.0.0.1:49696/wd/hub
+2023/07/11 02:07:56 initwd.go:47: &{8b92aa87d9ec7e822b8773e2ff5701b6 http://127.0.0.1:49696/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:52437  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:52437  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/11 02:07:56 initwd.go:50: 窗口数量： 1 [0AD2C7AF6D158ED9615EB0924F4B74B5 0EF0DC207E60BEF12CDF69036608382F]
+2023/07/11 02:07:56 galxe_finish.go:41: *********************开始处理第1条数据******************
+2023/07/11 02:07:57 galxe_finish.go:76: 查找成功了
+2023/07/11 02:07:59 galxe_finish.go:87: 查找成功了

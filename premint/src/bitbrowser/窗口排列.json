@@ -1,0 +1,12 @@
+{
+  "type": "box",
+  "startX": 0,
+  "startY": 0,
+  "width": 500,
+  "height": 300,
+  "col": 4,
+  "spaceX": 0,
+  "spaceY": 0,
+  "offsetX": 50,
+  "offsetY": 50
+}
