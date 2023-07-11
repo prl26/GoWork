@@ -3,8 +3,6 @@ package premint
 import (
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/model"
-	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
-	"github.com/JianLinWei1/premint-selenium/src/metamask"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
@@ -21,7 +19,7 @@ var wg sync.WaitGroup
 // 银河链接
 func GalxeFinish() {
 
-	excelInfos := util.GetOMNIExcelInfos("D:\\Go Work\\resource\\测试数据1条.xlsx")
+	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-1.xlsx")
 	fmt.Println("数据长度--------", len(excelInfos))
 	chs := make(chan string, len(excelInfos))
 	for k, v := range excelInfos {
@@ -44,41 +42,78 @@ func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selen
 	log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
 	/*	打开网址登陆小狐狸
 	 */
-	metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
-	time.Sleep(1 * time.Second)
-
-	log.Println("打开银河链接")
-	err := wd.Get("https://galxe.com/EchoDEX/campaign/GCDsmUSvqd")
-	if err != nil {
-		log.Println("打开银河链接出错了")
-	} else {
-		log.Println("银河打开成功")
-
-	}
-
-	handle := util.GetCurrentWindowAndReturn(wd)
-	time.Sleep(5 * time.Second)
-	//关闭多余标签页
-	bitbrowser.CloseOtherLabels(wd, handle)
-
-	ChooseNetwork(wd, "polygon")
-	main_handle, err := wd.WindowHandles()
-	//如果打开了小狐狸
-
-	if len(main_handle) > 1 {
-		err = ConfirmMeta(wd, main_handle)
-	}
-	//打开所需下拉框
+	//metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
+	//time.Sleep(1 * time.Second)
+	//
+	//log.Println("打开银河链接")
+	//err := wd.Get("https://galxe.com/EchoDEX/campaign/GCDsmUSvqd")
+	//if err != nil {
+	//	log.Println("打开银河链接出错了")
+	//} else {
+	//	log.Println("银河打开成功")
+	//
+	//}
+	//
+	//handle := util.GetCurrentWindowAndReturn(wd)
+	//time.Sleep(5 * time.Second)
+	////关闭多余标签页
+	//bitbrowser.CloseOtherLabels(wd, handle)
+	//
+	//ChooseNetwork(wd, "polygon")
+	//main_handle, err := wd.WindowHandles()
+	////如果打开了小狐狸
+	//
+	//if len(main_handle) > 1 {
+	//	err = ConfirmMeta(wd, main_handle)
+	//}
+	////打开所需下拉框
 	FindAllDropDownBox(wd, 8)
 
-	//一个一个打开链接并完成任务
+	//一个一个打开链接并完成任务detail-text text-14-regular clickable
 	aUrl, err := wd.FindElements(selenium.ByCSSSelector, ".detail-text.text-14-regular.clickable")
 	if err != nil {
 		log.Println("查找任务失败")
 	} else {
+		fmt.Println("当前页面url总数量", len(aUrl))
+		nowHandle, _ := wd.CurrentWindowHandle()
+		log.Println("nowHandle:", nowHandle)
 		for k, v := range aUrl {
-			fmt.Println("第", k, "条url的值为:", v)
+			//if k < 3 || k == len(aUrl)-1 {
+			//	continue
+			//} else {
+			//	log.Println("开始第", k, "条url的打开")
+			//	v.Click()
+			//	time.Sleep(5 * time.Second)
+			//}
+			//handles, _ := wd.WindowHandles()
+			//wd.SwitchWindow(handles[0])
+			if k == 3 {
+				v.Click()
+				//wd.Get("https://galxe.com/credential/293670416934412288")
+				//util.GetCurrentWindow(wd)
+				//var s []interface{}
+				//s = append(s, "https://galxe.com/credential/293670416934412288")
+				//wd.ExecuteScript("window.open(arguments[0])", s)
+				time.Sleep(5 * time.Second)
+				handles, _ := wd.WindowHandles()
+				wd.SwitchWindow(handles[1])
+				CurrentHandle1, _ := wd.CurrentWindowHandle()
+				log.Println("打开detail的", CurrentHandle1)
+				url, err := wd.FindElement(selenium.ByCSSSelector, "a.credential-link")
+				if err != nil {
+					log.Println("查找url失败")
+				} else {
+					url.Click()
+					handles, _ := wd.WindowHandles()
+					wd.SwitchWindow(handles[len(handles)-1])
+					CurrentHandle1, _ := wd.CurrentWindowHandle()
+					log.Println("打开twitter的", CurrentHandle1)
+					follow, err := wd.FindElements(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
+				}
+			}
 		}
+		time.Sleep(5 * time.Second)
+		//bitbrowser.CloseOtherLabels(wd, nowHandle)
 	}
 	wg.Done()
 	fmt.Println("处理完毕")

@@ -1,4 +1,24 @@
-2023/07/11 06:23:13 openbitbrowser.go:55: 请求BIt: {"id":"460ea72bba41423f8d144505f4866689","loadExtensions":true,"args":[],"extractIp":true}
-2023/07/11 06:23:13 openbitbrowser.go:71: bit返回 {"success":false,"msg":"今日打开窗口次数已达上限"}
-2023/07/11 06:23:13 initwd.go:41: http://127.0.0.1:63253/wd/hub
-2023/07/11 06:23:15 initwd.go:44: 初始化浏览器失败 Post "http://127.0.0.1:63253/wd/hub/session": dial tcp 127.0.0.1:63253: connectex: No connection could be made because the target machine actively refused it.
+2023/07/11 10:18:15 openbitbrowser.go:55: 请求BIt: {"id":"2a0ebf34eb7345cea6880bad89f4fbeb","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/11 10:18:16 openbitbrowser.go:71: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:52840/devtools/browser/59ee53de-606e-4e8e-97ba-ced4a1664a0a","http":"127.0.0.1:52840","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":599,"name":"jinniu_3-199","remark":"jinniu_3-199","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/11 10:18:17 initwd.go:41: http://127.0.0.1:57913/wd/hub
+2023/07/11 10:18:17 initwd.go:47: &{5e6d5248bb950365d3f8aa191eae6561 http://127.0.0.1:57913/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:52840  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:52840  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/11 10:18:17 initwd.go:50: 窗口数量： 0 [85FC25DE56B3530D4D871C8AB8144C2B]
+2023/07/11 10:18:17 galxe_finish.go:42: *********************开始处理第1条数据******************
+2023/07/11 10:18:17 galxe_finish.go:181: 13
+2023/07/11 10:18:17 galxe_finish.go:186: 开始第 5 个下拉框的处理
+2023/07/11 10:18:18 galxe_finish.go:198: element not visible: element not interactable
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/11 10:18:18 galxe_finish.go:186: 开始第 6 个下拉框的处理
+2023/07/11 10:18:20 galxe_finish.go:186: 开始第 7 个下拉框的处理
+2023/07/11 10:18:22 galxe_finish.go:186: 开始第 8 个下拉框的处理
+2023/07/11 10:18:24 galxe_finish.go:186: 开始第 9 个下拉框的处理
+2023/07/11 10:18:27 galxe_finish.go:186: 开始第 10 个下拉框的处理
+2023/07/11 10:18:29 galxe_finish.go:198: unknown error - 64: element click intercepted: Element <div data-v-1da1428f="" aria-expanded="false" class="v-expansion-panel">...</div> is not clickable at point (649, 1207). Other element would receive the click: <div class="claim-section" data-v-697f3fda="">...</div>
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/11 10:18:29 galxe_finish.go:186: 开始第 11 个下拉框的处理
+2023/07/11 10:18:31 galxe_finish.go:186: 开始第 12 个下拉框的处理
+2023/07/11 10:18:33 galxe_finish.go:79: nowHandle: 85FC25DE56B3530D4D871C8AB8144C2B
+2023/07/11 10:18:38 galxe_finish.go:101: 打开detail的 DFCA25D2C11348BC4A605DEC36084991
+2023/07/11 10:18:38 galxe_finish.go:110: 打开twitter的 0439C10D2900C7042D6F426550C410C3
