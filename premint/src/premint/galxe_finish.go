@@ -3,11 +3,11 @@ package premint
 import (
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/model"
+	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
 	"log"
-	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -18,7 +18,8 @@ var wg sync.WaitGroup
 // 通过excel获取数据打开比特浏览器
 // 银河链接
 func GalxeFinish() {
-
+	//url := "https://galxe.com/EchoDEX/campaign/GCDsmUSvqd"
+	url := "https://galxe.com/OmniNetwork/campaign/GCSmgUW7Fo"
 	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-1.xlsx")
 	fmt.Println("数据长度--------", len(excelInfos))
 	chs := make(chan string, len(excelInfos))
@@ -29,7 +30,7 @@ func GalxeFinish() {
 		if wd != nil {
 			wg.Add(1)
 			//go util.SetLog(func() {
-			go StartGalxe(v, k, chs, wd)
+			go StartGalxe(v, k, chs, wd, url)
 			//})
 		}
 	}
@@ -38,37 +39,42 @@ func GalxeFinish() {
 	wg.Wait()
 }
 
-func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selenium.WebDriver) {
-	log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
-	/*	打开网址登陆小狐狸
-	 */
+func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selenium.WebDriver, url string) {
+	//log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
+	///*	打开网址登陆小狐狸
+	// */
 	//metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
 	//time.Sleep(1 * time.Second)
 	//
 	//log.Println("打开银河链接")
-	//err := wd.Get("https://galxe.com/EchoDEX/campaign/GCDsmUSvqd")
+	//err := wd.Get(url)
 	//if err != nil {
 	//	log.Println("打开银河链接出错了")
 	//} else {
 	//	log.Println("银河打开成功")
 	//
 	//}
+	//time.Sleep(2 * time.Second)
 	//
 	//handle := util.GetCurrentWindowAndReturn(wd)
-	//time.Sleep(5 * time.Second)
 	////关闭多余标签页
 	//bitbrowser.CloseOtherLabels(wd, handle)
+	//wd.SwitchWindow(handle)
+	//time.Sleep(5 * time.Second)
 	//
-	//ChooseNetwork(wd, "polygon")
+	//ChooseNetwork(wd, "Polygon")
+	//time.Sleep(2 * time.Second)
 	//main_handle, err := wd.WindowHandles()
 	////如果打开了小狐狸
-	//
 	//if len(main_handle) > 1 {
 	//	err = ConfirmMeta(wd, main_handle)
 	//}
 	////打开所需下拉框
-	FindAllDropDownBox(wd, 8)
+	//time.Sleep(2 * time.Second)
+	//wd.SwitchWindow(handle)
 
+	FindAllDropDownBox(wd, 8)
+	time.Sleep(2 * time.Second)
 	//一个一个打开链接并完成任务detail-text text-14-regular clickable
 	aUrl, err := wd.FindElements(selenium.ByCSSSelector, ".detail-text.text-14-regular.clickable")
 	if err != nil {
@@ -87,14 +93,16 @@ func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selen
 			//}
 			//handles, _ := wd.WindowHandles()
 			//wd.SwitchWindow(handles[0])
-			if k == 3 {
+			if k > len(aUrl)-3 || len(aUrl) < 3 {
+				continue
+			} else {
 				v.Click()
 				//wd.Get("https://galxe.com/credential/293670416934412288")
 				//util.GetCurrentWindow(wd)
 				//var s []interface{}
 				//s = append(s, "https://galxe.com/credential/293670416934412288")
 				//wd.ExecuteScript("window.open(arguments[0])", s)
-				time.Sleep(5 * time.Second)
+				time.Sleep(3 * time.Second)
 				handles, _ := wd.WindowHandles()
 				wd.SwitchWindow(handles[1])
 				CurrentHandle1, _ := wd.CurrentWindowHandle()
@@ -105,15 +113,28 @@ func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selen
 				} else {
 					url.Click()
 					handles, _ := wd.WindowHandles()
+					fmt.Println("打开twitter后handle的长度", len(handles))
+					time.Sleep(2 * time.Second)
 					wd.SwitchWindow(handles[len(handles)-1])
 					CurrentHandle1, _ := wd.CurrentWindowHandle()
+
 					log.Println("打开twitter的", CurrentHandle1)
-					follow, err := wd.FindElements(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
+					//css-18t94o4 css-1dbjc4n r-42olwf r-sdzlij r-1phboty r-rs99b7 r-16y2uox r-6gpygo r-peo1c r-1ps3wis r-1ny4l3l r-1udh08x r-1guathk r-1udbk01 r-o7ynqc r-6416eg r-lrvibr r-3s2u2q
+					//css-18t94o4 css-1dbjc4n r-42olwf r-sdzlij r-1phboty r-rs99b7 r-16y2uox r-6gpygo r-peo1c r-1ps3wis r-1ny4l3l r-1udh08x r-1guathk r-1udbk01 r-o7ynqc r-6416eg r-lrvibr r-3s2u2q
+					follow, err := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
+
+					//follow, err := wd.FindElements(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
+					if err != nil {
+						log.Println("没有找到follow按钮")
+					} else {
+						//log.Println("follow查找到的长度", len(follow))
+						follow.Click()
+					}
 				}
 			}
 		}
 		time.Sleep(5 * time.Second)
-		//bitbrowser.CloseOtherLabels(wd, nowHandle)
+		bitbrowser.CloseOtherLabels(wd, nowHandle)
 	}
 	wg.Done()
 	fmt.Println("处理完毕")
@@ -163,10 +184,16 @@ func ConfirmMeta(wd selenium.WebDriver, main_handle []string) error {
 	url, err := wd.CurrentURL()
 	log.Println(url)
 	time.Sleep(1 * time.Second)
-
+	knows, _ := wd.FindElements(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary")
+	if len(knows) > 0 {
+		for _, know := range knows {
+			know.Click()
+		}
+	} else {
+		log.Println("未找到明白了按钮")
+	}
 	button, err := wd.FindElements(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary")
 	fmt.Println(len(button))
-
 	if err != nil {
 		log.Println("查找切换网络失败")
 		return err

@@ -7,6 +7,7 @@
 package twitter
 
 import (
+	"errors"
 	"log"
 	"strconv"
 	"strings"
@@ -256,5 +257,37 @@ func findDiag(wd selenium.WebDriver) {
 		}
 		return true, nil
 	}, 20*time.Second)
+
+}
+func TwitterFollow(wd selenium.WebDriver, url selenium.WebElement) {
+	url.Click()
+	time.Sleep(2 * time.Second)
+	//切换到新打开的页面
+	handles1, _ := wd.WindowHandles()
+	wd.SwitchWindow(handles1[len(handles1)-1])
+	CurrentHandle2, _ := wd.CurrentWindowHandle()
+
+	log.Println("打开detail第二次的handle长度", len(handles1))
+	log.Println("当前handle", CurrentHandle2)
+
+	err := wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+		for i := 0; i < 10; i++ {
+			_, err := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
+			if err != nil {
+				time.Sleep(1 * time.Second)
+				continue
+			} else {
+				return true, nil
+			}
+		}
+		return false, errors.New("失败")
+	}, 10*time.Second)
+	if err != nil {
+		log.Println("查找follow失败")
+	} else {
+		button, _ := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
+		button.Click()
+		time.Sleep(1 * time.Second)
+	}
 
 }

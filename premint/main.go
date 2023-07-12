@@ -32,7 +32,7 @@ func toMain() {
 	//	premint.Start()
 	//	break
 	//case 7:
-	premint.GalxeFinish()
+	premint.OmniGalxe()
 	//}
 
 	//isExit()
