@@ -77,7 +77,6 @@ func ToRegister(excelInfo util.ExcelInfo, i int, ch chan<- string, wd selenium.W
 	twitter.FollowAndTweeTwitter(wd)
 	clickToRegister(wd)
 	ch <- "第" + strconv.Itoa(i+1) + "条数据执行结束"
-
 }
 
 // 点击去登录

@@ -259,7 +259,7 @@ func findDiag(wd selenium.WebDriver) {
 	}, 20*time.Second)
 
 }
-func TwitterFollow(wd selenium.WebDriver, url selenium.WebElement) {
+func TwitterFollow(wd selenium.WebDriver, url selenium.WebElement) error {
 	url.Click()
 	time.Sleep(2 * time.Second)
 	//切换到新打开的页面
@@ -272,7 +272,10 @@ func TwitterFollow(wd selenium.WebDriver, url selenium.WebElement) {
 
 	err := wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
 		for i := 0; i < 10; i++ {
-			_, err := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
+			//css-901oao r-1awozwy r-jwli3a r-6koalj r-18u37iz r-16y2uox r-37j5jr r-a023e6 r-b88u0q r-1777fci r-rjixqe r-bcqeeo r-q4m81j r-qvutc0
+			//_, err := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
+			_, err := wd.FindElement(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
+
 			if err != nil {
 				time.Sleep(1 * time.Second)
 				continue
@@ -284,10 +287,11 @@ func TwitterFollow(wd selenium.WebDriver, url selenium.WebElement) {
 	}, 10*time.Second)
 	if err != nil {
 		log.Println("查找follow失败")
+		return err
 	} else {
-		button, _ := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
+		button, _ := wd.FindElement(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
+		time.Sleep(2 * time.Second)
 		button.Click()
-		time.Sleep(1 * time.Second)
 	}
-
+	return err
 }

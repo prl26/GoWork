@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/model"
 	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
+	"github.com/JianLinWei1/premint-selenium/src/metamask"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
 	"log"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -29,9 +31,9 @@ func GalxeFinish() {
 		wd, _ := wdservice.InitWd(k, v.BitId)
 		if wd != nil {
 			wg.Add(1)
-			//go util.SetLog(func() {
-			go StartGalxe(v, k, chs, wd, url)
-			//})
+			go util.SetLog(func() {
+				go StartGalxe(v, k, chs, wd, url)
+			})
 		}
 	}
 	//bitbrowser.WindowboundsByPara()
@@ -40,38 +42,38 @@ func GalxeFinish() {
 }
 
 func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selenium.WebDriver, url string) {
-	//log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
-	///*	打开网址登陆小狐狸
-	// */
-	//metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
-	//time.Sleep(1 * time.Second)
-	//
-	//log.Println("打开银河链接")
-	//err := wd.Get(url)
-	//if err != nil {
-	//	log.Println("打开银河链接出错了")
-	//} else {
-	//	log.Println("银河打开成功")
-	//
-	//}
-	//time.Sleep(2 * time.Second)
-	//
-	//handle := util.GetCurrentWindowAndReturn(wd)
-	////关闭多余标签页
-	//bitbrowser.CloseOtherLabels(wd, handle)
-	//wd.SwitchWindow(handle)
-	//time.Sleep(5 * time.Second)
-	//
-	//ChooseNetwork(wd, "Polygon")
-	//time.Sleep(2 * time.Second)
-	//main_handle, err := wd.WindowHandles()
-	////如果打开了小狐狸
-	//if len(main_handle) > 1 {
-	//	err = ConfirmMeta(wd, main_handle)
-	//}
-	////打开所需下拉框
-	//time.Sleep(2 * time.Second)
-	//wd.SwitchWindow(handle)
+	log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
+	/*	打开网址登陆小狐狸
+	 */
+	metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
+	time.Sleep(1 * time.Second)
+
+	log.Println("打开银河链接")
+	err := wd.Get(url)
+	if err != nil {
+		log.Println("打开银河链接出错了")
+	} else {
+		log.Println("银河打开成功")
+
+	}
+	time.Sleep(2 * time.Second)
+
+	handle := util.GetCurrentWindowAndReturn(wd)
+	//关闭多余标签页
+	bitbrowser.CloseOtherLabels(wd, handle)
+	wd.SwitchWindow(handle)
+	time.Sleep(5 * time.Second)
+
+	ChooseNetwork(wd, "Polygon")
+	time.Sleep(2 * time.Second)
+	main_handle, err := wd.WindowHandles()
+	//如果打开了小狐狸
+	if len(main_handle) > 1 {
+		err = ConfirmMeta(wd, main_handle)
+	}
+	//打开所需下拉框
+	time.Sleep(2 * time.Second)
+	wd.SwitchWindow(handle)
 
 	FindAllDropDownBox(wd, 8)
 	time.Sleep(2 * time.Second)
@@ -142,22 +144,33 @@ func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selen
 }
 
 // 选择网络
-func ChooseNetwork(wd selenium.WebDriver, str string) {
-	button, err := wd.FindElements(selenium.ByCSSSelector, ".text-14-regular.text-overline-ellipsis-1")
-
-	if err != nil {
-		log.Println("查找元素出错了")
-	} else {
-		//fmt.Println(button.Text())
-		log.Println("查找成功了")
-		time.Sleep(2 * time.Second)
-
-		err = button[1].Click()
+func ChooseNetwork(wd selenium.WebDriver, str string) error {
+	//chain-btn flex-all-center marginr-4 clickable
+	//wrong-btn marginr-4 clickable flex-all-center
+	//button, err := wd.FindElements(selenium.ByCSSSelector, ".text-14-regular.text-overline-ellipsis-1")
+	wrongButton, err := wd.FindElements(selenium.ByCSSSelector, ".wrong-btn.marginr-4.clickable.flex-all-center")
+	if err != nil || len(wrongButton) == 0 {
+		button, err := wd.FindElements(selenium.ByCSSSelector, ".chain-btn.flex-all-center.marginr-4.clickable")
 		if err != nil {
-			log.Println("点击失败")
-
+			log.Println("查找元素出错了")
+		} else {
+			log.Println("查找成功了,button长度：", len(button))
+			time.Sleep(2 * time.Second)
+			if len(button) > 0 {
+				err = button[1].Click()
+			}
+			if err != nil {
+				return err
+				log.Println("点击失败")
+			}
 		}
-
+	} else {
+		log.Println("找到元素wrong network", len(wrongButton))
+		err = wrongButton[1].Click()
+		if err != nil {
+			log.Println("wrong button 点击失败")
+			return err
+		}
 	}
 	time.Sleep(1 * time.Second)
 	d1, err := wd.FindElements(selenium.ByCSSSelector, ".wallet-option-item.text-16-bold")
@@ -172,16 +185,18 @@ func ChooseNetwork(wd selenium.WebDriver, str string) {
 				err = d1[k].Click()
 				if err != nil {
 					log.Println("点击失败")
+					return err
 				}
 			}
 		}
 	}
+	return nil
 }
 
 // 小狐狸确认
 func ConfirmMeta(wd selenium.WebDriver, main_handle []string) error {
 	wd.SwitchWindow(main_handle[1])
-	url, err := wd.CurrentURL()
+	url, _ := wd.CurrentURL()
 	log.Println(url)
 	time.Sleep(1 * time.Second)
 	knows, _ := wd.FindElements(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary")
@@ -189,16 +204,17 @@ func ConfirmMeta(wd selenium.WebDriver, main_handle []string) error {
 		for _, know := range knows {
 			know.Click()
 		}
+		time.Sleep(1 * time.Second)
+		button, err := wd.FindElements(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary")
+		fmt.Println(len(button))
+		if err != nil {
+			log.Println("未找到第二个弹窗按钮")
+			return err
+		} else {
+			button[0].Click()
+		}
 	} else {
-		log.Println("未找到明白了按钮")
-	}
-	button, err := wd.FindElements(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary")
-	fmt.Println(len(button))
-	if err != nil {
-		log.Println("查找切换网络失败")
-		return err
-	} else {
-		button[0].Click()
+		log.Println("未找到第一个按钮")
 	}
 	return nil
 }

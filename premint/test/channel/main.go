@@ -6,14 +6,14 @@ import (
 
 func main() {
 	// 无缓冲通道
-	ch1 := make(chan int)
+	ch1 := make(chan string)
 
 	// 有缓冲通道，缓冲区大小为 3
 	ch2 := make(chan int, 3)
 
 	// 向无缓冲通道发送数据（会阻塞）
 	go func() {
-		ch1 <- 1
+		ch1 <- "1"
 		fmt.Println("Sent 1 to unbuffered channel")
 	}()
 
@@ -36,7 +36,10 @@ func main() {
 		val := <-ch2
 		fmt.Println("Received", val, "from buffered channel")
 	}()
-
+	C1(ch1)
 	// 等待协程执行完成
 	fmt.Scanln()
+}
+func C1(chan<- string) {
+
 }

@@ -1,11 +1,36 @@
-2023/07/12 09:00:20 openbitbrowser.go:55: 请求BIt: {"id":"2a0ebf34eb7345cea6880bad89f4fbeb","loadExtensions":true,"args":[],"extractIp":true}
-2023/07/12 09:00:20 openbitbrowser.go:71: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:64065/devtools/browser/80ed8ee6-3140-411a-b05c-2cf777f99aed","http":"127.0.0.1:64065","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":599,"name":"jinniu_3-199","remark":"jinniu_3-199","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
-2023/07/12 09:00:21 initwd.go:41: http://127.0.0.1:65349/wd/hub
-2023/07/12 09:00:21 initwd.go:47: &{0a73a5dabdb3cff8ce011e8d2f51105a http://127.0.0.1:65349/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:64065  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:64065  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
-2023/07/12 09:00:21 initwd.go:50: 窗口数量： 0 [656520E355571F3ADFE5C472D8DF72CD]
-2023/07/12 09:00:21 omni_galxe.go:39: *********************开始处理第1条数据******************
-2023/07/12 09:00:21 omni_galxe.go:169: 9
-2023/07/12 09:00:21 omni_galxe.go:174: 开始第 6 个下拉框的处理
-2023/07/12 09:00:23 omni_galxe.go:174: 开始第 7 个下拉框的处理
-2023/07/12 09:00:25 omni_galxe.go:174: 开始第 8 个下拉框的处理
-2023/07/12 09:00:29 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/13 10:18:57 openbitbrowser.go:55: 请求BIt: {"id":"93ee4ce3d5164f26a09c56484ff5257b","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/13 10:19:04 openbitbrowser.go:71: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:58901/devtools/browser/f0f672f9-39e8-4dcd-8ef1-a178be9feb5c","http":"127.0.0.1:58901","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":595,"name":"jinniu_3-195","remark":"jinniu_3-195","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/13 10:19:06 initwd.go:41: http://127.0.0.1:58934/wd/hub
+2023/07/13 10:19:06 initwd.go:47: &{58aaf76ff3beba60348806d9040f7f9c http://127.0.0.1:58934/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:58901  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:58901  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/13 10:19:06 initwd.go:50: 窗口数量： 1 [BEE46568D3CF8BD0D26858933D4AD018 A7227ED5EEE48B1FA94BC6EB495D4881]
+2023/07/13 10:19:06 omni_galxe.go:59: *********************开始处理第1条数据******************
+2023/07/13 10:19:14 metamask.go:57: 检测弹窗
+2023/07/13 10:19:14 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/13 10:19:15 omni_galxe.go:65: 打开银河链接
+2023/07/13 10:19:18 omni_galxe.go:73: 银河打开成功
+2023/07/13 10:19:20 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/13 10:19:22 galxe_finish.go:157: 查找成功了,button长度： 2
+2023/07/13 10:19:25 galxe_finish.go:180: 查找成功了
+2023/07/13 10:19:30 omni_galxe.go:255: 9
+2023/07/13 10:19:30 omni_galxe.go:260: 开始第 6 个下拉框的处理
+2023/07/13 10:19:32 omni_galxe.go:260: 开始第 7 个下拉框的处理
+2023/07/13 10:19:34 omni_galxe.go:260: 开始第 8 个下拉框的处理
+2023/07/13 10:19:37 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/13 10:19:38 omni_galxe.go:154: nowHandle: A7227ED5EEE48B1FA94BC6EB495D4881
+2023/07/13 10:19:38 omni_galxe.go:159: 开始第 0 个url的点击
+2023/07/13 10:19:38 omni_galxe.go:179: 打开detail第一次的 0017CF322110C7F44F492335FC8E783E
+2023/07/13 10:19:42 follow.go:18: 打开detail第二次的handle长度 3
+2023/07/13 10:19:42 follow.go:19: 当前handle 82FCD312B4B21BDFEB114D342DC4642B
+2023/07/13 10:19:44 omni_galxe.go:204: 切换为主页 A7227ED5EEE48B1FA94BC6EB495D4881
+2023/07/13 10:19:44 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/13 10:19:47 omni_galxe.go:159: 开始第 1 个url的点击
+2023/07/13 10:19:47 omni_galxe.go:179: 打开detail第一次的 DBC59EBB9FEB4B30406088E759F0A86C
+2023/07/13 10:19:51 follow.go:270: 打开detail第二次的handle长度 3
+2023/07/13 10:19:51 follow.go:271: 当前handle AE16101A4FF90B7ACF2E9D03D328CECA
+2023/07/13 10:19:54 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/13 10:19:56 omni_galxe.go:159: 开始第 2 个url的点击
+2023/07/13 10:19:57 omni_galxe.go:179: 打开detail第一次的 32C7DFB4F30CFBE32F0BFE3F7A009A2E
+2023/07/13 10:19:59 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/13 10:20:01 omni_galxe.go:143: 查找刷新按钮失败
