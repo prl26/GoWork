@@ -26,7 +26,6 @@ func main() {
 }
 func toMain() {
 	//cmd := wdservice.InitCmd()
-
 	//switch cmd {
 	//case 1:
 	//	premint.Start()

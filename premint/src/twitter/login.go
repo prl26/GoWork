@@ -32,7 +32,6 @@ func LoginTwitter(userName string, pwd string, userAt string, wd selenium.WebDri
 	util.GetWind(0, wd)
 
 }
-
 func loginClick(wd selenium.WebDriver) {
 	log.Println("*******twitter点击登录*******")
 	wd.Wait(func(wd selenium.WebDriver) (bool, error) {

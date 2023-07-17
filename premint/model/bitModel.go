@@ -121,6 +121,11 @@ type UpdateResponseData struct {
 	Success bool `json:"success"`
 }
 
+type CloseResponseData struct {
+	Success bool   `json:"success"`
+	Data    string `json:"data"`
+}
+
 // list  分页查询
 type ListRequestData struct {
 	Page     int32  `json:"page"`

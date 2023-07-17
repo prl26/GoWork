@@ -117,9 +117,16 @@ func TwitterTweet(wd selenium.WebDriver, url selenium.WebElement) error {
 		log.Println("查找follow失败")
 		return err
 	} else {
+		handleNow, _ := wd.CurrentWindowHandle()
+		wd.MaximizeWindow(handleNow)
 		button, _ := wd.FindElement(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
-		button.Click()
-		time.Sleep(3 * time.Second)
+		err := button.Click()
+		if err != nil {
+			log.Println("twitter tweet 点击失败")
+			return err
+		}
+		time.Sleep(1 * time.Second)
+		//bitbrowser.WindowboundsByPara()
 	}
 	return err
 }

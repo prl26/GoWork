@@ -1,36 +1,334 @@
-2023/07/13 10:18:57 openbitbrowser.go:55: 请求BIt: {"id":"93ee4ce3d5164f26a09c56484ff5257b","loadExtensions":true,"args":[],"extractIp":true}
-2023/07/13 10:19:04 openbitbrowser.go:71: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:58901/devtools/browser/f0f672f9-39e8-4dcd-8ef1-a178be9feb5c","http":"127.0.0.1:58901","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":595,"name":"jinniu_3-195","remark":"jinniu_3-195","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
-2023/07/13 10:19:06 initwd.go:41: http://127.0.0.1:58934/wd/hub
-2023/07/13 10:19:06 initwd.go:47: &{58aaf76ff3beba60348806d9040f7f9c http://127.0.0.1:58934/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:58901  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:58901  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
-2023/07/13 10:19:06 initwd.go:50: 窗口数量： 1 [BEE46568D3CF8BD0D26858933D4AD018 A7227ED5EEE48B1FA94BC6EB495D4881]
-2023/07/13 10:19:06 omni_galxe.go:59: *********************开始处理第1条数据******************
-2023/07/13 10:19:14 metamask.go:57: 检测弹窗
-2023/07/13 10:19:14 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+2023/07/17 10:25:58 openbitbrowser.go:59: 请求BIt: {"id":"d3c884d9cf7d4f8980a9673a3a8c9055","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:13 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53085/devtools/browser/73744b82-f117-4976-9e38-fd98ae3a87d7","http":"127.0.0.1:53085","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":436,"name":"jinniu_3-036","remark":"jinniu_3-036","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:26:15 initwd.go:41: http://127.0.0.1:53099/wd/hub
+2023/07/17 10:26:15 initwd.go:47: &{b58186e75a2a61907de5d969dd3f34d3 http://127.0.0.1:53099/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53085  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53085  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:26:15 initwd.go:50: 窗口数量： 1 [3CBD8B91FE12BAB1D9B3D320B37787AE 39DDBDFDD898E318413E451C7173F0BF]
+2023/07/17 10:26:15 omni_galxe.go:98: *********************开始处理第2条数据******************
+2023/07/17 10:26:18 openbitbrowser.go:59: 请求BIt: {"id":"c23f7d214d164ac09e1a48acf7a72ff4","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:21 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53177/devtools/browser/18d5ca7a-b41f-4475-9a5c-3472a3ae11a4","http":"127.0.0.1:53177","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":437,"name":"jinniu_3-037","remark":"jinniu_3-037","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:26:23 initwd.go:41: http://127.0.0.1:53195/wd/hub
+2023/07/17 10:26:23 initwd.go:47: &{a528925ee91d10c9faefdaae2e10abac http://127.0.0.1:53195/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53177  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53177  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:26:23 initwd.go:50: 窗口数量： 1 [A8012687F0807B044113988BF0D2D9D0 3B5B5E44CD2F3B84F3C23F3782679F43]
+2023/07/17 10:26:23 omni_galxe.go:98: *********************开始处理第3条数据******************
+2023/07/17 10:26:23 metamask.go:57: 检测弹窗
+2023/07/17 10:26:24 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
   (Session info: chrome=112.0.5615.132)
   (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
-2023/07/13 10:19:15 omni_galxe.go:65: 打开银河链接
-2023/07/13 10:19:18 omni_galxe.go:73: 银河打开成功
-2023/07/13 10:19:20 closeLabels.go:16: 关闭除目标的其他标签页
-2023/07/13 10:19:22 galxe_finish.go:157: 查找成功了,button长度： 2
-2023/07/13 10:19:25 galxe_finish.go:180: 查找成功了
-2023/07/13 10:19:30 omni_galxe.go:255: 9
-2023/07/13 10:19:30 omni_galxe.go:260: 开始第 6 个下拉框的处理
-2023/07/13 10:19:32 omni_galxe.go:260: 开始第 7 个下拉框的处理
-2023/07/13 10:19:34 omni_galxe.go:260: 开始第 8 个下拉框的处理
-2023/07/13 10:19:37 closeLabels.go:16: 关闭除目标的其他标签页
-2023/07/13 10:19:38 omni_galxe.go:154: nowHandle: A7227ED5EEE48B1FA94BC6EB495D4881
-2023/07/13 10:19:38 omni_galxe.go:159: 开始第 0 个url的点击
-2023/07/13 10:19:38 omni_galxe.go:179: 打开detail第一次的 0017CF322110C7F44F492335FC8E783E
-2023/07/13 10:19:42 follow.go:18: 打开detail第二次的handle长度 3
-2023/07/13 10:19:42 follow.go:19: 当前handle 82FCD312B4B21BDFEB114D342DC4642B
-2023/07/13 10:19:44 omni_galxe.go:204: 切换为主页 A7227ED5EEE48B1FA94BC6EB495D4881
-2023/07/13 10:19:44 closeLabels.go:16: 关闭除目标的其他标签页
-2023/07/13 10:19:47 omni_galxe.go:159: 开始第 1 个url的点击
-2023/07/13 10:19:47 omni_galxe.go:179: 打开detail第一次的 DBC59EBB9FEB4B30406088E759F0A86C
-2023/07/13 10:19:51 follow.go:270: 打开detail第二次的handle长度 3
-2023/07/13 10:19:51 follow.go:271: 当前handle AE16101A4FF90B7ACF2E9D03D328CECA
-2023/07/13 10:19:54 closeLabels.go:16: 关闭除目标的其他标签页
-2023/07/13 10:19:56 omni_galxe.go:159: 开始第 2 个url的点击
-2023/07/13 10:19:57 omni_galxe.go:179: 打开detail第一次的 32C7DFB4F30CFBE32F0BFE3F7A009A2E
-2023/07/13 10:19:59 closeLabels.go:16: 关闭除目标的其他标签页
-2023/07/13 10:20:01 omni_galxe.go:143: 查找刷新按钮失败
+2023/07/17 10:26:25 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:26 openbitbrowser.go:59: 请求BIt: {"id":"3e8ee2130d2147cd8390b868196375c7","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:27 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:26:29 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53298/devtools/browser/f7222ddc-73df-45d9-b185-614fb90f354a","http":"127.0.0.1:53298","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":438,"name":"jinniu_3-038","remark":"jinniu_3-038","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:26:30 initwd.go:41: http://127.0.0.1:53308/wd/hub
+2023/07/17 10:26:30 initwd.go:47: &{c290019b7c9cc6b8037ab754a71887b9 http://127.0.0.1:53308/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53298  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53298  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:26:30 initwd.go:50: 窗口数量： 1 [61F94340B1B134D1A325D7860D52184F 92B5840D7C936A38F10B6463E81C170F]
+2023/07/17 10:26:30 omni_galxe.go:98: *********************开始处理第4条数据******************
+2023/07/17 10:26:31 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:26:32 metamask.go:57: 检测弹窗
+2023/07/17 10:26:33 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:33 openbitbrowser.go:59: 请求BIt: {"id":"39f2057f84044d10ae1802cb85d8a187","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:34 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:34 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:36 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53397/devtools/browser/cc2ed580-99da-4446-9ecb-3f8336db6dc6","http":"127.0.0.1:53397","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":439,"name":"jinniu_3-039","remark":"jinniu_3-039","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:26:36 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:26:37 initwd.go:41: http://127.0.0.1:53410/wd/hub
+2023/07/17 10:26:37 initwd.go:47: &{840eb0760bb315bc97f6fafa82e37198 http://127.0.0.1:53410/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53397  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53397  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:26:37 initwd.go:50: 窗口数量： 1 [07F0BDA47ED0708A1BBA7425C377EDAB CE4B9E18EE8546585A01B4AB3FB7E269]
+2023/07/17 10:26:37 omni_galxe.go:98: *********************开始处理第5条数据******************
+2023/07/17 10:26:39 metamask.go:57: 检测弹窗
+2023/07/17 10:26:40 openbitbrowser.go:59: 请求BIt: {"id":"7e48ce47bd1e45c798a4a521e6c26d6e","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:40 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:26:40 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:41 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:26:41 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:42 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53504/devtools/browser/b5dbdd6d-555f-4275-865f-26b747bd76a3","http":"127.0.0.1:53504","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":440,"name":"jinniu_3-040","remark":"jinniu_3-040","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:26:43 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:43 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:26:44 initwd.go:41: http://127.0.0.1:53520/wd/hub
+2023/07/17 10:26:44 initwd.go:47: &{4e780ea5be3fe6b5300d053b53dfe7e2 http://127.0.0.1:53520/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53504  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53504  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:26:44 initwd.go:50: 窗口数量： 1 [5D128F49B852933E1AE5CF06965A6FD2 CFB02071DB316BEE0E529A9DCF5F0BB2]
+2023/07/17 10:26:44 omni_galxe.go:98: *********************开始处理第6条数据******************
+2023/07/17 10:26:44 galxe_finish.go:182: 查找成功了
+2023/07/17 10:26:45 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:26:46 metamask.go:57: 检测弹窗
+2023/07/17 10:26:47 openbitbrowser.go:59: 请求BIt: {"id":"b35833efc0e742208ff7acf59cd63ed7","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:47 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:48 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:49 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:26:49 omni_galxe.go:333: 10
+2023/07/17 10:26:49 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:26:50 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:26:50 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:50 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:26:50 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:26:52 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:52 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:26:52 metamask.go:57: 检测弹窗
+2023/07/17 10:26:53 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:53 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:53 galxe_finish.go:182: 查找成功了
+2023/07/17 10:26:53 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:53 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53680/devtools/browser/8816ba90-9bfe-4a24-bf80-4f46ac08f26d","http":"127.0.0.1:53680","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":441,"name":"jinniu_3-041","remark":"jinniu_3-041","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:26:54 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:54 omni_galxe.go:224: nowHandle: 39DDBDFDD898E318413E451C7173F0BF
+2023/07/17 10:26:54 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:54 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:26:54 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:26:55 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:55 initwd.go:41: http://127.0.0.1:53694/wd/hub
+2023/07/17 10:26:55 initwd.go:47: &{76363c352da6f3b63612910b44788905 http://127.0.0.1:53694/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53680  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53680  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:26:55 initwd.go:50: 窗口数量： 1 [C8879769470C32327021FFB78679D659 D259F264B865521CC842A8A40E2E6F94]
+2023/07/17 10:26:55 omni_galxe.go:98: *********************开始处理第7条数据******************
+2023/07/17 10:26:57 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:26:57 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:26:58 openbitbrowser.go:59: 请求BIt: {"id":"cbcf804a9769402dbd51555b585fc8fb","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:26:58 omni_galxe.go:333: 10
+2023/07/17 10:26:58 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:26:59 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:26:59 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:26:59 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:26:59 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:01 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53807/devtools/browser/0bc05386-9f29-43b4-962b-c869e80fee3d","http":"127.0.0.1:53807","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":442,"name":"jinniu_3-042","remark":"jinniu_3-042","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:27:01 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:01 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:02 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:02 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:02 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:02 initwd.go:41: http://127.0.0.1:53824/wd/hub
+2023/07/17 10:27:02 initwd.go:47: &{6d2365b3a97719f32cda2a6d050b1862 http://127.0.0.1:53824/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53807  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53807  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:27:02 initwd.go:50: 窗口数量： 1 [43579D2FEC2502BA20DB47CE2EFBCD05 9B2E69E9F101C1F1274C0EAD677EF11F]
+2023/07/17 10:27:02 omni_galxe.go:98: *********************开始处理第8条数据******************
+2023/07/17 10:27:02 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:03 omni_galxe.go:224: nowHandle: 3B5B5E44CD2F3B84F3C23F3782679F43
+2023/07/17 10:27:03 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:03 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:04 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:04 metamask.go:57: 检测弹窗
+2023/07/17 10:27:05 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:05 openbitbrowser.go:59: 请求BIt: {"id":"5d2b34e120cf4d1e9448a88627099d42","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:27:06 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:07 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:08 omni_galxe.go:333: 10
+2023/07/17 10:27:08 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:08 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:08 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:53884/devtools/browser/c6b1a550-32af-4dd6-8276-87b6bffaa8cc","http":"127.0.0.1:53884","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":443,"name":"jinniu_3-043","remark":"jinniu_3-043","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:27:08 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:27:09 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:09 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:09 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:09 initwd.go:41: http://127.0.0.1:53900/wd/hub
+2023/07/17 10:27:09 initwd.go:47: &{434a4432a7b2907258a7e43b5ed6ea1c http://127.0.0.1:53900/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53884  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:53884  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:27:09 initwd.go:50: 窗口数量： 1 [C25663FA5BA4ADC8EF2BCBA039398146 59EC65F4B1E7B68975B6D26FD60DEA07]
+2023/07/17 10:27:10 omni_galxe.go:98: *********************开始处理第9条数据******************
+2023/07/17 10:27:10 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:10 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:11 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:11 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:12 metamask.go:57: 检测弹窗
+2023/07/17 10:27:12 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:12 omni_galxe.go:224: nowHandle: 92B5840D7C936A38F10B6463E81C170F
+2023/07/17 10:27:12 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:13 openbitbrowser.go:59: 请求BIt: {"id":"93f071fb1f8545888fbd822714a6a25a","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:27:13 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:27:13 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:13 omni_galxe.go:333: 9
+2023/07/17 10:27:13 omni_galxe.go:341: 开始第 6 个下拉框的处理
+2023/07/17 10:27:13 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:14 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:15 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:16 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:54002/devtools/browser/6fd136e3-0cdc-48d4-abdd-c922c8b3ade7","http":"127.0.0.1:54002","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":444,"name":"jinniu_3-044","remark":"jinniu_3-044","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:27:16 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:16 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:27:17 initwd.go:41: http://127.0.0.1:54016/wd/hub
+2023/07/17 10:27:17 initwd.go:47: &{482a0828e19cc52e02c3be98b48ec5f3 http://127.0.0.1:54016/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:54002  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:54002  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:27:17 initwd.go:50: 窗口数量： 1 [C5C765D9250E55FE24219EB96A1D9E24 03B3F3F6AE07E142BDC23A3C77F45417]
+2023/07/17 10:27:17 omni_galxe.go:98: *********************开始处理第10条数据******************
+2023/07/17 10:27:17 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:18 omni_galxe.go:333: 10
+2023/07/17 10:27:18 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:19 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:19 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:19 metamask.go:57: 检测弹窗
+2023/07/17 10:27:19 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:20 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:20 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:20 openbitbrowser.go:59: 请求BIt: {"id":"4b1e78ac1d624124a9306272ef7624f3","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/17 10:27:20 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:27:20 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:21 omni_galxe.go:224: nowHandle: CE4B9E18EE8546585A01B4AB3FB7E269
+2023/07/17 10:27:21 omni_galxe.go:231: 开始第 0 个url的点击
+2023/07/17 10:27:21 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:21 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:21 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:22 omni_galxe.go:224: nowHandle: CFB02071DB316BEE0E529A9DCF5F0BB2
+2023/07/17 10:27:22 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:22 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:23 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:27:24 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:54158/devtools/browser/80f93536-e9a7-4f67-abc9-ecde299852e5","http":"127.0.0.1:54158","coreVersion":"112","driver":"C:\\Users\\Administrator\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":445,"name":"jinniu_3-045","remark":"jinniu_3-045","groupId":"2c9bc04788f5e6a20188f5f4cc0f1ba0"}}
+2023/07/17 10:27:26 initwd.go:41: http://127.0.0.1:54189/wd/hub
+2023/07/17 10:27:26 omni_galxe.go:400: 处理第一次小狐狸登陆,button长度： 1
+2023/07/17 10:27:26 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:26 initwd.go:47: &{1dd87e7339c99cf581119142a38d9e1c http://127.0.0.1:54189/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:54158  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:54158  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/17 10:27:26 initwd.go:50: 窗口数量： 1 [3FFB0B75A5808165C089E05F7B6A1326 6A7750818D1C211D706E6379F6FDDA3E]
+2023/07/17 10:27:26 metamask.go:57: 检测弹窗
+2023/07/17 10:27:26 omni_galxe.go:98: *********************开始处理第10条数据******************
+2023/07/17 10:27:26 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:27 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:27 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:27 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:30 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:27:30 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:27:32 omni_galxe.go:333: 10
+2023/07/17 10:27:32 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:32 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:27:32 omni_galxe.go:245: 点击第 0 个url失败： 失败
+2023/07/17 10:27:32 omni_galxe.go:176: url处理失败了---- 0xf430753F24e3903980A0A18b7D8831CdC69210Bd
+2023/07/17 10:27:32 omni_galxe.go:59: 4b1e78ac1d624124a9306272ef7624f3 失败
+2023/07/17 10:27:32 omni_galxe.go:36: 接受到一条错误信息： [0xf430753F24e3903980A0A18b7D8831CdC69210Bd ETH 7e48ce47bd1e45c798a4a521e6c26d6e SHIfeng0615]
+2023/07/17 10:27:33 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:33 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:33 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:34 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:34 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:34 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:35 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:35 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:35 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:36 metamask.go:57: 检测弹窗
+2023/07/17 10:27:36 metamask.go:72: 未找到弹窗2 no such element: no such element: Unable to locate element: {"method":"css selector","selector":"popover-container"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:36 omni_galxe.go:224: nowHandle: D259F264B865521CC842A8A40E2E6F94
+2023/07/17 10:27:36 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:37 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:37 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:38 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:39 omni_galxe.go:110: 打开银河链接
+2023/07/17 10:27:39 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:41 omni_galxe.go:118: 银河打开成功
+2023/07/17 10:27:41 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:42 omni_galxe.go:333: 10
+2023/07/17 10:27:42 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:42 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:43 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:43 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:44 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:44 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:44 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:44 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:45 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:45 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:45 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:47 omni_galxe.go:224: nowHandle: 9B2E69E9F101C1F1274C0EAD677EF11F
+2023/07/17 10:27:47 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:47 omni_galxe.go:333: 10
+2023/07/17 10:27:47 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:48 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:48 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:49 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:49 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:50 omni_galxe.go:333: 10
+2023/07/17 10:27:50 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:27:50 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:50 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:50 galxe_finish.go:159: 查找成功了,button长度： 2
+2023/07/17 10:27:51 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:51 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:27:51 omni_galxe.go:224: nowHandle: 59EC65F4B1E7B68975B6D26FD60DEA07
+2023/07/17 10:27:51 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:52 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:52 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:27:53 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:27:53 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:53 galxe_finish.go:182: 查找成功了
+2023/07/17 10:27:54 omni_galxe.go:224: nowHandle: 03B3F3F6AE07E142BDC23A3C77F45417
+2023/07/17 10:27:54 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:27:54 galxe_finish.go:194: 网络切换成功
+2023/07/17 10:27:59 omni_galxe.go:333: 10
+2023/07/17 10:27:59 omni_galxe.go:341: 开始第 7 个下拉框的处理
+2023/07/17 10:28:00 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:28:00 omni_galxe.go:341: 开始第 8 个下拉框的处理
+2023/07/17 10:28:01 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:28:01 omni_galxe.go:341: 开始第 9 个下拉框的处理
+2023/07/17 10:28:02 omni_galxe.go:354: no such element: no such element: Unable to locate element: {"method":"css selector","selector":".expand-icon"}
+  (Session info: chrome=112.0.5615.132)
+  (Driver info: chromedriver=112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936}),platform=Windows NT 10.0.19045 x86_64)
+2023/07/17 10:28:02 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:28:03 omni_galxe.go:224: nowHandle: 6A7750818D1C211D706E6379F6FDDA3E
+2023/07/17 10:28:03 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []
+2023/07/17 10:28:07 omni_galxe.go:36: 接受到一条错误信息： []

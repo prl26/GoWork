@@ -15,7 +15,7 @@ import (
 	"net/http"
 )
 
-const BASE_URL = "http://127.0.0.1:54346"
+const BASE_URL = "http://127.0.0.1:54345"
 
 // openBrower参数结构体
 type RequestData struct {
@@ -23,6 +23,10 @@ type RequestData struct {
 	LoadExtensions bool     `json:"loadExtensions"`
 	Args           []string `json:"args"`
 	ExtractIp      bool     `json:"extractIp"`
+}
+
+type CloseRequestData struct {
+	ID string `json:"id"`
 }
 
 type ResponseData struct {
@@ -97,6 +101,35 @@ func UpdataBrower(reqData model.BitDetailStruct) bool {
 	}
 	log.Println("bit返回", string(body))
 	responseBody := &model.UpdateResponseData{}
+	json.Unmarshal(body, responseBody)
+	return responseBody.Success
+}
+func CloseBrower(id string) bool {
+	reqData := CloseRequestData{
+		ID: id,
+	}
+	reqDataJson, err := json.Marshal(reqData)
+	if err != nil {
+		panic(err)
+	}
+	log.Println("关闭bit:", string(reqDataJson))
+
+	postReq, _ := http.NewRequest(http.MethodPost, BASE_URL+"/browser/close", bytes.NewBuffer(reqDataJson))
+	postReq.Header.Set("Content-Type", "application/json")
+	client := &http.Client{Transport: &http.Transport{}}
+
+	response, err := client.Do(postReq)
+	if err != nil {
+		panic(err)
+	}
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		panic(err)
+	}
+	log.Println("bit返回", string(body))
+	responseBody := &model.CloseResponseData{}
 	json.Unmarshal(body, responseBody)
 	return responseBody.Success
 }
