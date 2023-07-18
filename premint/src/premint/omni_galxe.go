@@ -13,8 +13,12 @@ import (
 	"log"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
+
+var wg1 sync.WaitGroup
+var wg sync.WaitGroup
 
 func OmniGalxe() {
 	url := "https://galxe.com/OmniNetwork/campaign/GCSmgUW7Fo"
@@ -71,7 +75,51 @@ func OmniGalxe() {
 			Ids = Ids[:0]
 		}
 	}
+	//批量打开
+	//for k, v := range excelInfos {
+	//	Ids = append(Ids, v.BitId)
+	//	fmt.Println("----------", v.Address)
+	//	//打开比特浏览器
+	//	if len(Ids) == 10 {
+	//		//先批量打开浏览器
+	//		for _, id := range Ids {
+	//			wg1.Add(1)
+	//			go func() {
+	//				defer wg1.Done()
+	//				wd, _ := wdservice.InitWd(k, id)
+	//				if wd != nil {
+	//					wds = append(wds, wd)
+	//					wg.Add(1)
+	//					counter++
+	//					infos = append(infos, v)
+	//				} else {
+	//					log.Println(v.BitId, "-----窗口打开失败")
+	//					dstFile.WriteString(fmt.Sprintf("%v-----窗口打开失败", v.BitId))
+	//					wrongData := []string{v.Address, v.Type, v.BitId, v.MetaPwd}
+	//					chs <- wrongData
+	//				}
+	//			}()
+	//		}
+	//		//等待一下
+	//		wg1.Wait()
+	//		//开始处理
+	//		for k1, v1 := range infos {
+	//			wg.Add(1)
+	//			go util.SetLog(func() {
+	//				defer wg.Done()
+	//				wd, _ := wdservice.InitWd(k1, v1.BitId)
+	//				err := RemoveTwitter(v, k, chs, wd, url, dstFile)
+	//				if err != nil {
+	//					log.Println("!-------!", v.BitId, "失败")
+	//				}
+	//			})
+	//		}
+	//		wg.Wait()
+	//	}
+	//
+	//}
 
+	//单个打开
 	//for k, v := range excelInfos {
 	//	fmt.Println("----------", v.Address)
 	//	//打开比特浏览器
@@ -286,17 +334,17 @@ func UrlTask(wd selenium.WebDriver, num int, handle string, texts []string) erro
 							}
 						case strings.Contains(texts[k], "Twitter") && strings.Contains(texts[k], "Follow"):
 							//err1 := twitter.TwitterFollow(wd, url)
-							//bitbrowser.CloseOtherLabels(wd, handle)
-							//wd.SwitchWindow(handle)
-							//time.Sleep(2 * time.Second)
+							bitbrowser.CloseOtherLabels(wd, handle)
+							wd.SwitchWindow(handle)
+							time.Sleep(2 * time.Second)
 							//if err1 != nil {
 							//	return err1
 							//}
 						case strings.Contains(texts[k], "Twitter") && strings.Contains(texts[k], "Tweet"):
 							//err1 := twitter.TwitterTweet(wd, url)
-							//bitbrowser.CloseOtherLabels(wd, handle)
-							//wd.SwitchWindow(handle)
-							//time.Sleep(2 * time.Second)
+							bitbrowser.CloseOtherLabels(wd, handle)
+							wd.SwitchWindow(handle)
+							time.Sleep(2 * time.Second)
 							//if err1 != nil {
 							//	return err1
 							//}

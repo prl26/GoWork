@@ -4,17 +4,18 @@ import (
 	"errors"
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/model"
-	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
 	"github.com/xuri/excelize/v2"
 	"log"
 	"os"
+	"strings"
 	"sync"
 	"time"
 )
 
+var wg1 sync.WaitGroup
 var wg sync.WaitGroup
 
 //1.打开银河
@@ -34,10 +35,10 @@ func Remove() {
 	excel.SetSheetRow("Sheet1", "A1", &title)
 
 	//定义一次开多少线程
-	Size := 10
 	counter := 0
 	var Ids []string
-
+	var wds []selenium.WebDriver
+	var infos []model.OMNIExcelInfo
 	fmt.Println("数据长度--------", len(excelInfos))
 
 	// 获取内容并写入Excel
@@ -50,37 +51,51 @@ func Remove() {
 		}
 	}()
 
+	//批量打开
 	for k, v := range excelInfos {
-		counter++
 		Ids = append(Ids, v.BitId)
 		fmt.Println("----------", v.Address)
 		//打开比特浏览器
-		wd, _ := wdservice.InitWd(k, v.BitId)
-		//handle, _ := wd.CurrentWindowHandle()
-		//wd.ResizeWindow(handle, 500, 300)
-		if wd != nil {
-			wg.Add(1)
-			go util.SetLog(func() {
-				defer wg.Done()
-				err := RemoveTwitter(v, k, chs, wd, url, dstFile)
-				if err != nil {
-					log.Println("!-------!", v.BitId, "失败")
-				}
-			})
-		}
-		if counter >= Size && (counter-1)%Size == 0 {
-			bitbrowser.WindowboundsByPara()
-			log.Println("counter------", counter)
+		if len(Ids) == 10 {
+			//先批量打开浏览器
+			for _, id := range Ids {
+				wg1.Add(1)
+				go func() {
+					defer wg1.Done()
+					wd, _ := wdservice.InitWd(k, id)
+					if wd != nil {
+						wds = append(wds, wd)
+						wg.Add(1)
+						counter++
+						infos = append(infos, v)
+					} else {
+						log.Println(v.BitId, "-----窗口打开失败")
+						dstFile.WriteString(fmt.Sprintf("%v-----窗口打开失败", v.BitId))
+						wrongData := []string{v.Address, v.Type, v.BitId, v.MetaPwd}
+						chs <- wrongData
+					}
+				}()
+			}
+			//等待一下
+			wg1.Wait()
+			//开始处理
+			for k1, v1 := range infos {
+				wg.Add(1)
+				go util.SetLog(func() {
+					defer wg.Done()
+					wd, _ := wdservice.InitWd(k1, v1.BitId)
+					err := RemoveTwitter(v, k, chs, wd, url, dstFile)
+					if err != nil {
+						log.Println("!-------!", v.BitId, "失败")
+					}
+				})
+			}
 			wg.Wait()
-			bitbrowser.WindowboundsByPara()
-			time.Sleep(2 * time.Second)
-			//for _, v := range Ids {
-			//	bitbrowser.CloseBrower(v)
-			//}
-			Ids = Ids[:0]
 		}
+
 	}
 
+	//单个打开
 	//for k, v := range excelInfos {
 	//	fmt.Println("----------", v.Address)
 	//	//打开比特浏览器
@@ -97,10 +112,11 @@ func Remove() {
 	//	bitbrowser.WindowboundsByPara()
 	//	wg.Wait()
 	//}
-	wg.Wait()
 	close(chs)
-	excel.SaveAs(filepout)
-
+	err := excel.SaveAs(filepout)
+	if err != nil {
+		log.Println("excel 保存失败")
+	}
 }
 func RemoveTwitter(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd selenium.WebDriver, url string, dstFile *os.File) (err error) {
 	//打开个人首页
@@ -110,7 +126,7 @@ func RemoveTwitter(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd 
 	err = OpenHomePage(wd)
 	if err != nil {
 		log.Println("进入个人主页失败")
-		dstFile.WriteString("进入个人主页失败")
+		dstFile.WriteString(fmt.Sprintf("进入个人主页失败-----%v", excelInfo.BitId))
 		ch <- wrongData
 		return err
 	} else {
@@ -122,23 +138,34 @@ func RemoveTwitter(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd 
 	err = ClickSetting(wd)
 	if err != nil {
 		log.Println("进入setting失败")
-		dstFile.WriteString("进入setting失败")
+		dstFile.WriteString(fmt.Sprintf("进入setting失败-----%v", excelInfo.BitId))
 		ch <- wrongData
 		return err
 	} else {
 		log.Println("进入setting成功")
 	}
 	time.Sleep(2 * time.Second)
-
 	//进入了 Edit Profile页面 -->找到Social Link 点击
 	err = ClickSocialLink(wd)
 	if err != nil {
 		log.Println("进入ClickSocialLink失败")
-		dstFile.WriteString("进入ClickSocialLink失败")
+		dstFile.WriteString(fmt.Sprintf("进入ClickSocialLink失败-----%v", excelInfo.BitId))
 		ch <- wrongData
 		return err
 	} else {
 		log.Println("进入ClickSocialLink成功")
+	}
+	time.Sleep(2 * time.Second)
+
+	//找到twiteer,再找到remove
+	err = ClickRemovek(wd)
+	if err != nil {
+		log.Println("点击remove失败")
+		dstFile.WriteString(fmt.Sprintf("点击remove失败-----%v", excelInfo.BitId))
+		ch <- wrongData
+		return err
+	} else {
+		log.Println("点击remove成功")
 	}
 	time.Sleep(2 * time.Second)
 	return
@@ -212,6 +239,50 @@ func ClickSocialLink(wd selenium.WebDriver) (err error) {
 		//找到具有setting属性的div
 		button, _ := SocialLink.FindElement(selenium.ByXPATH, "//div[contains(text(), 'Social Link')]")
 		button.Click()
+	}
+	return
+}
+func ClickRemovek(wd selenium.WebDriver) (err error) {
+	var removeTwitter []selenium.WebElement
+	err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+		for i := 0; i < 10; i++ {
+			removeTwitter, err = wd.FindElements(selenium.ByCSSSelector, ".social-account-box")
+			if err != nil {
+				time.Sleep(1 * time.Second)
+				continue
+			} else {
+				return true, nil
+			}
+		}
+		return false, errors.New("Fail")
+	}, 10*time.Second)
+	if err != nil {
+		return err
+	} else {
+		//找到twitter在的div,并点击remove
+		if len(removeTwitter) > 0 {
+			for _, v := range removeTwitter {
+				SaName, _ := v.FindElement(selenium.ByCSSSelector, ".sa-name")
+				text, _ := SaName.Text()
+				if strings.Contains(text, "Twitter") {
+					actions, _ := v.FindElements(selenium.ByCSSSelector, ".sa-action")
+					if len(actions) > 0 {
+						err = actions[0].Click()
+						if err != nil {
+							log.Println("点击remove失败")
+						} else {
+							log.Println("点击remove成功")
+							return nil
+						}
+					}
+				} else {
+					continue
+				}
+			}
+		} else {
+			log.Println("没有找到对应的box,已经remove了")
+			return nil
+		}
 	}
 	return
 }

@@ -11,11 +11,8 @@ import (
 	"log"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
 )
-
-var wg sync.WaitGroup
 
 // 通过excel获取数据打开比特浏览器
 // 银河链接
