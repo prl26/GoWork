@@ -26,6 +26,7 @@ func GalxeFollow(wd selenium.WebDriver, url selenium.WebElement) (err error) {
 	wd.MaximizeWindow(handleNow)
 	//关闭弹窗
 	time.Sleep(2 * time.Second)
+
 	pop, _ := wd.FindElements(selenium.ByCSSSelector, ".iconfont.icon-close.text-20-regular.clickable.m-popup-close-icon")
 	log.Println("pop长度：", len(pop))
 	if len(pop) > 0 {
@@ -56,8 +57,24 @@ func GalxeFollow(wd selenium.WebDriver, url selenium.WebElement) (err error) {
 		followButton, _ := wd.FindElement(selenium.ByCSSSelector, ".spine-player-canvas")
 		err = followButton.Click()
 		if err != nil {
-			log.Println("点击follow按钮出错了")
-			return err
+			err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+				for i := 0; i < 10; i++ {
+					_, err = wd.FindElement(selenium.ByCSSSelector, ".dialog-classic-content")
+					if err != nil {
+						time.Sleep(1 * time.Second)
+						continue
+					} else {
+						return true, nil
+					}
+				}
+				return false, errors.New("失败")
+			}, 5*time.Second)
+			if err != nil {
+				log.Println("Galxe Task 失败")
+				return err
+			} else {
+				log.Println("----------Galxe follow成功-------------")
+			}
 		} else {
 			log.Println("----------Galxe follow成功-------------")
 		}

@@ -8,13 +8,15 @@ package main
 
 import (
 	"fmt"
+	"github.com/JianLinWei1/premint-selenium/src/Galxe"
+	"github.com/JianLinWei1/premint-selenium/src/premint"
+	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"io"
 	"log"
 	"os"
 	"runtime/debug"
 	"strings"
 
-	"github.com/JianLinWei1/premint-selenium/src/premint"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 )
 
@@ -25,14 +27,16 @@ func main() {
 	})
 }
 func toMain() {
-	//cmd := wdservice.InitCmd()
-	//switch cmd {
-	//case 1:
-	//	premint.Start()
-	//	break
-	//case 7:
-	premint.OmniGalxe()
-	//}
+	cmd := wdservice.InitCmd()
+	switch cmd {
+	case 1:
+		premint.Start()
+		break
+	case 7:
+		premint.OmniGalxe()
+	case 9:
+		Galxe.Remove()
+	}
 
 	//isExit()
 }

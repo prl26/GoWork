@@ -7,7 +7,6 @@ import (
 
 func main() {
 	fileName := "test.txt"
-
 	dstFile, _ := os.Create(fileName)
 	fmt.Println("hello")
 	defer dstFile.Close()
