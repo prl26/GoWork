@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/model"
+	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
@@ -35,7 +36,6 @@ func Remove() {
 	excel.SetSheetRow("Sheet1", "A1", &title)
 
 	//定义一次开多少线程
-	counter := 0
 	var Ids []string
 	var wds []selenium.WebDriver
 	var infos []model.OMNIExcelInfo
@@ -66,7 +66,6 @@ func Remove() {
 					if wd != nil {
 						wds = append(wds, wd)
 						wg.Add(1)
-						counter++
 						infos = append(infos, v)
 					} else {
 						log.Println(v.BitId, "-----窗口打开失败")
@@ -91,6 +90,10 @@ func Remove() {
 				})
 			}
 			wg.Wait()
+			for _, v2 := range infos {
+				bitbrowser.CloseBrower(v2.BitId)
+			}
+			infos = infos[:0]
 		}
 
 	}

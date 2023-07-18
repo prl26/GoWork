@@ -6,11 +6,13 @@ import (
 	"github.com/JianLinWei1/premint-selenium/model"
 	"github.com/JianLinWei1/premint-selenium/src/Galxe"
 	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
+	"github.com/JianLinWei1/premint-selenium/src/metamask"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
 	"github.com/xuri/excelize/v2"
 	"log"
+	"os"
 	"strconv"
 	"strings"
 	"sync"
@@ -22,15 +24,22 @@ var wg sync.WaitGroup
 
 func OmniGalxe() {
 	url := "https://galxe.com/OmniNetwork/campaign/GCSmgUW7Fo"
-	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-419.xlsx")
-	filepout := "D:\\GoWork\\resource\\failInfos.xlsx"
-
-	fmt.Println("数据长度--------", len(excelInfos))
+	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-425.xlsx")
+	filepout := "D:\\GoWork\\resource\\FailInfos\\omniGalxeFailInfos.xlsx"
+	TxtfileOut := "D:\\GoWork\\resource\\FailInfos\\omniGalxeFailInfos.txt"
+	dstFile, _ := os.Create(TxtfileOut)
+	defer dstFile.Close()
 	chs := make(chan []string, len(excelInfos))
 	var title = []string{"地址", "类型", "窗口ID", "MetaMask密码"}
 	//创建新的excel文件
 	excel := excelize.NewFile()
 	excel.SetSheetRow("Sheet1", "A1", &title)
+
+	//定义一次开多少线程
+	var Ids []string
+	var wds []selenium.WebDriver
+	var infos []model.OMNIExcelInfo
+	fmt.Println("数据长度--------", len(excelInfos))
 
 	// 获取内容并写入Excel
 	go func() {
@@ -41,83 +50,84 @@ func OmniGalxe() {
 			excel.SetSheetRow("Sheet1", axis, &data)
 		}
 	}()
-	Size := 10
-	counter := 0
-	var Ids []string
-	for k, v := range excelInfos {
-		counter++
 
-		Ids = append(Ids, v.BitId)
-		fmt.Println("----------", v.Address)
-		//打开比特浏览器
-		wd, _ := wdservice.InitWd(k, v.BitId)
-		handle, _ := wd.CurrentWindowHandle()
-		wd.ResizeWindow(handle, 500, 300)
-		if wd != nil {
-			wg.Add(1)
-			go util.SetLog(func() {
-				defer wg.Done()
-				err := StartOmniGalxe(v, k, chs, wd, url)
-				if err != nil {
-					log.Println(v.BitId, "失败")
-				}
-			})
-		}
-		if counter >= Size && (counter-1)%Size == 0 {
-			bitbrowser.WindowboundsByPara()
-			log.Println("counter------", counter)
-			wg.Wait()
-			bitbrowser.WindowboundsByPara()
-			time.Sleep(3 * time.Second)
-			//for _, v := range Ids {
-			//	bitbrowser.CloseBrower(v)
-			//}
-			Ids = Ids[:0]
-		}
-	}
-	//批量打开
 	//for k, v := range excelInfos {
+	//	counter++
+	//
 	//	Ids = append(Ids, v.BitId)
 	//	fmt.Println("----------", v.Address)
 	//	//打开比特浏览器
-	//	if len(Ids) == 10 {
-	//		//先批量打开浏览器
-	//		for _, id := range Ids {
-	//			wg1.Add(1)
-	//			go func() {
-	//				defer wg1.Done()
-	//				wd, _ := wdservice.InitWd(k, id)
-	//				if wd != nil {
-	//					wds = append(wds, wd)
-	//					wg.Add(1)
-	//					counter++
-	//					infos = append(infos, v)
-	//				} else {
-	//					log.Println(v.BitId, "-----窗口打开失败")
-	//					dstFile.WriteString(fmt.Sprintf("%v-----窗口打开失败", v.BitId))
-	//					wrongData := []string{v.Address, v.Type, v.BitId, v.MetaPwd}
-	//					chs <- wrongData
-	//				}
-	//			}()
-	//		}
-	//		//等待一下
-	//		wg1.Wait()
-	//		//开始处理
-	//		for k1, v1 := range infos {
-	//			wg.Add(1)
-	//			go util.SetLog(func() {
-	//				defer wg.Done()
-	//				wd, _ := wdservice.InitWd(k1, v1.BitId)
-	//				err := RemoveTwitter(v, k, chs, wd, url, dstFile)
-	//				if err != nil {
-	//					log.Println("!-------!", v.BitId, "失败")
-	//				}
-	//			})
-	//		}
-	//		wg.Wait()
+	//	wd, _ := wdservice.InitWd(k, v.BitId)
+	//	handle, _ := wd.CurrentWindowHandle()
+	//	wd.ResizeWindow(handle, 500, 300)
+	//	if wd != nil {
+	//		wg.Add(1)
+	//		go util.SetLog(func() {
+	//			defer wg.Done()
+	//			err := StartOmniGalxe(v, k, chs, wd, url)
+	//			if err != nil {
+	//				log.Println(v.BitId, "失败")
+	//			}
+	//		})
 	//	}
-	//
+	//	if counter >= Size && (counter-1)%Size == 0 {
+	//		bitbrowser.WindowboundsByPara()
+	//		log.Println("counter------", counter)
+	//		wg.Wait()
+	//		bitbrowser.WindowboundsByPara()
+	//		time.Sleep(3 * time.Second)
+	//		//for _, v := range Ids {
+	//		//	bitbrowser.CloseBrower(v)
+	//		//}
+	//		Ids = Ids[:0]
+	//	}
 	//}
+	//批量打开
+	for k, v := range excelInfos {
+		Ids = append(Ids, v.BitId)
+		fmt.Println("----------", v.Address)
+		//打开比特浏览器
+		if len(Ids) == 10 {
+			//先批量打开浏览器
+			for _, id := range Ids {
+				wg1.Add(1)
+				go func() {
+					defer wg1.Done()
+					wd, _ := wdservice.InitWd(k, id)
+					if wd != nil {
+						wds = append(wds, wd)
+						wg.Add(1)
+						infos = append(infos, v)
+					} else {
+						log.Println(v.BitId, "-----窗口打开失败")
+						dstFile.WriteString(fmt.Sprintf("%v-----窗口打开失败", v.BitId))
+						wrongData := []string{v.Address, v.Type, v.BitId, v.MetaPwd}
+						chs <- wrongData
+					}
+				}()
+			}
+			//等待一下
+			wg1.Wait()
+			//开始处理
+			for k1, v1 := range infos {
+				wg.Add(1)
+				go util.SetLog(func() {
+					defer wg.Done()
+					wd, _ := wdservice.InitWd(k1, v1.BitId)
+					err := StartOmniGalxe(v, k, chs, wd, url)
+					if err != nil {
+						log.Println("!-------!", v.BitId, "失败")
+					}
+				})
+			}
+			wg.Wait()
+			for _, v2 := range infos {
+				bitbrowser.CloseBrower(v2.BitId)
+			}
+			infos = infos[:0]
+		}
+
+	}
 
 	//单个打开
 	//for k, v := range excelInfos {
@@ -145,63 +155,65 @@ func StartOmniGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd
 	log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
 	/*	打开网址登陆小狐狸
 	 */
-	//metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
-	//time.Sleep(1 * time.Second)
+	metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
+	time.Sleep(1 * time.Second)
 
 	handle := util.GetCurrentWindowAndReturn(wd)
-	////关闭多余标签页
-	//bitbrowser.CloseOtherLabels(wd, handle)
-	//wd.SwitchWindow(handle)
-	//time.Sleep(2 * time.Second)
-	//
-	//log.Println("打开银河链接")
-	//err := wd.Get(url)
-	//if err != nil {
-	//	log.Println("打开银河链接出错了-----", excelInfo.Address)
-	//	wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
-	//	ch <- wrongData
-	//	return err
-	//} else {
-	//	log.Println("银河打开成功")
-	//}
-	//time.Sleep(1 * time.Second)
-	//time.Sleep(1 * time.Second)
-	////关闭小狐狸，第一次会有登陆
-	//main_handle, _ := wd.WindowHandles()
-	////如果打开了小狐狸
-	//if len(main_handle) > 1 {
-	//	LoginRequest(wd, main_handle)
-	//}
-	//
-	//time.Sleep(1 * time.Second)
-	//bitbrowser.CloseOtherLabels(wd, handle)
-	//wd.SwitchWindow(handle)
-	//time.Sleep(6 * time.Second)
-	//handleNow, _ := wd.CurrentWindowHandle()
-	//wd.MaximizeWindow(handleNow)
-	//err = ChooseNetwork(wd, "Polygon")
-	//if err != nil {
-	//	log.Println("切换网址失败-----", excelInfo.Address)
-	//	wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
-	//	ch <- wrongData
-	//	return err
-	//}
-	////如果打开了小狐狸
-	//time.Sleep(1 * time.Second)
-	//main_handle, _ = wd.WindowHandles()
-	//if len(main_handle) > 1 {
-	//	LoginRequest(wd, main_handle)
-	//	err = ConfirmMeta(wd, main_handle)
-	//}
-	//if err != nil {
-	//	log.Println("小狐狸关闭弹窗失败-----", excelInfo.Address)
-	//	wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
-	//	ch <- wrongData
-	//	return err
-	//}
-	//time.Sleep(1 * time.Second)
-	//wd.SwitchWindow(handle)
-	//time.Sleep(1 * time.Second)
+	//关闭多余标签页
+	bitbrowser.CloseOtherLabels(wd, handle)
+	wd.SwitchWindow(handle)
+	time.Sleep(2 * time.Second)
+
+	log.Println("打开银河链接")
+	err := wd.Get(url)
+	if err != nil {
+		log.Println("打开银河链接出错了-----", excelInfo.Address)
+		wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
+		ch <- wrongData
+		return err
+	} else {
+		log.Println("银河打开成功")
+	}
+	handleNow, _ := wd.CurrentWindowHandle()
+	wd.MaximizeWindow(handleNow)
+
+	time.Sleep(2 * time.Second)
+	//关闭小狐狸，第一次会有登陆
+	main_handle, _ := wd.WindowHandles()
+	//如果打开了小狐狸
+	if len(main_handle) > 1 {
+		LoginRequest(wd, main_handle)
+	}
+	time.Sleep(1 * time.Second)
+	bitbrowser.CloseOtherLabels(wd, handle)
+	wd.SwitchWindow(handle)
+	time.Sleep(2 * time.Second)
+
+	err = ChooseNetwork(wd, "Polygon")
+	if err != nil {
+		log.Println("切换网址失败-----", excelInfo.Address)
+		wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
+		ch <- wrongData
+		return err
+	}
+
+	//如果打开了小狐狸
+	time.Sleep(1 * time.Second)
+	main_handle, _ = wd.WindowHandles()
+	if len(main_handle) > 1 {
+		LoginRequest(wd, main_handle)
+		err = ConfirmMeta(wd, main_handle)
+	}
+	if err != nil {
+		log.Println("小狐狸关闭弹窗失败-----", excelInfo.Address)
+		wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
+		ch <- wrongData
+		return err
+	}
+
+	time.Sleep(1 * time.Second)
+	wd.SwitchWindow(handle)
+	time.Sleep(1 * time.Second)
 
 	//打开所需下拉框
 	texts, err := OmniFindAllDropDownBox(wd, 3)
@@ -231,8 +243,8 @@ func StartOmniGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd
 	//Refresh(wd)
 	time.Sleep(1 * time.Second)
 
-	fmt.Println("处理完毕")
-	wd.ResizeWindow(handle, 500, 300)
+	fmt.Println("成功处理完毕-----", excelInfo.BitId)
+	bitbrowser.CloseBrower(excelInfo.BitId)
 	return nil
 }
 func Refresh(wd selenium.WebDriver) {
