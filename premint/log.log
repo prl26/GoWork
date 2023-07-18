@@ -1,23 +1,9 @@
-2023/07/18 02:57:41 openbitbrowser.go:59: 请求BIt: {"id":"39f2057f84044d10ae1802cb85d8a187","loadExtensions":true,"args":[],"extractIp":true}
-2023/07/18 02:57:42 openbitbrowser.go:75: bit返回 {"success":false,"msg":"服务调用成功,但没有找到相应数据！"}
-2023/07/18 02:57:42 initwd.go:41: http://127.0.0.1:59653/wd/hub
-2023/07/18 02:57:44 initwd.go:44: 初始化浏览器失败 Post "http://127.0.0.1:59653/wd/hub/session": dial tcp 127.0.0.1:59653: connectex: No connection could be made because the target machine actively refused it.
-2023/07/18 02:57:44 util.go:140: runtime error: invalid memory address or nil pointer dereference
-2023/07/18 02:57:44 util.go:141: goroutine 1 [running]:
-runtime/debug.Stack()
-	D:/jetBrains/go1.19/src/runtime/debug/stack.go:24 +0x65
-github.com/JianLinWei1/premint-selenium/src/util.SetLog.func1()
-	D:/GoWork/premint/src/util/util.go:141 +0x51
-panic({0xe46a20, 0x11db610})
-	D:/jetBrains/go1.19/src/runtime/panic.go:884 +0x212
-github.com/JianLinWei1/premint-selenium/src/Galxe.Remove()
-	D:/GoWork/premint/src/Galxe/RemoveTwitter.go:59 +0x5bc
-main.toMain()
-	D:/GoWork/premint/main.go:38 +0x31
-main.main.func1()
-	D:/GoWork/premint/main.go:26 +0x17
-github.com/JianLinWei1/premint-selenium/src/util.SetLog(0xc000042000?)
-	D:/GoWork/premint/src/util/util.go:152 +0x3e
-main.main()
-	D:/GoWork/premint/main.go:25 +0x25
-
+2023/07/18 03:42:21 openbitbrowser.go:59: 请求BIt: {"id":"460ea72bba41423f8d144505f4866689","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/18 03:42:21 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:57057/devtools/browser/620db1df-100a-4f67-a4f3-c4d5efe3d40a","http":"127.0.0.1:57057","coreVersion":"112","driver":"C:\\Users\\ASUS\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":1,"name":"","remark":""}}
+2023/07/18 03:42:23 initwd.go:41: http://127.0.0.1:59046/wd/hub
+2023/07/18 03:42:23 initwd.go:47: &{7425f1520f44eeadc2ed96646478a480 http://127.0.0.1:59046/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:57057  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:57057  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
+2023/07/18 03:42:23 initwd.go:50: 窗口数量： 0 [B20B7C1641036D551BEDEC6BA70F7AC7]
+2023/07/18 03:42:23 RemoveTwitter.go:117: 进入个人主页成功
+2023/07/18 03:42:25 RemoveTwitter.go:129: 进入setting成功
+2023/07/18 03:42:27 RemoveTwitter.go:141: 进入ClickSocialLink成功
+2023/07/18 03:42:29 RemoveTwitter.go:47: 接受到一条错误信息： []
