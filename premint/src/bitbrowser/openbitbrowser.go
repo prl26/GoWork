@@ -72,7 +72,7 @@ func OpenBrowser(id string) DataRes {
 	if err != nil {
 		panic(err)
 	}
-	log.Println("bit返回", string(body))
+	//log.Println("bit返回", string(body))
 	responseBody := &ResponseData{}
 	json.Unmarshal(body, responseBody)
 	return responseBody.Data

@@ -1,33 +1,48 @@
-package OMNI
+package main
 
 import (
+	"fmt"
 	"github.com/JianLinWei1/premint-selenium/src/util"
+	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"io"
 	"log"
 	"os"
 	"runtime/debug"
+	"strings"
+	"sync"
 )
 
-var (
-	Count        int = 20
-	WarningCount int = 0
-	RoundCount   int = 0
-	AddressCount int = 0
-	ClaimCount   int = 0
-	RepatedCount int = 4
-	RepatedCheck int = 3
-)
+var wg sync.WaitGroup
 
+//go:generate goversioninfo -64 -gofilepackage="main"
 func main() {
-
+	count := 0
 	util.SetLog(func() {
-		toMain()
+		toMain(count)
 	})
 }
-func toMain() {
+func toMain(count int) {
+	cmd := wdservice.InitCmd()
+	switch cmd {
 
-	Start()
+	case 9:
+		fmt.Println("9")
+	case 11:
+		fmt.Println("10")
+	}
+	if count == 0 {
+		count++
+		fmt.Println("1")
+	}
+}
 
+func isExit() {
+	fmt.Println("是否继续操作(y/n)：")
+	var isExit string
+	fmt.Scanln(&isExit)
+	if strings.EqualFold(isExit, "y") {
+		toMain(1)
+	}
 }
 func init() {
 

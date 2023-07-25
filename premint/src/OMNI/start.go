@@ -1,4 +1,4 @@
-package main
+package OMNI
 
 import (
 	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"

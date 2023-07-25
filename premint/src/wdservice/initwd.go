@@ -44,7 +44,7 @@ func InitWd(i int, bitID string) (selenium.WebDriver, int) {
 		log.Println("初始化浏览器失败", err)
 		return nil, 0
 	}
-	log.Println(wd)
+	//log.Println(wd)
 	handles, _ := wd.WindowHandles()
 	numWin := len(handles) - 1
 	log.Println("窗口数量：", numWin, handles)
@@ -86,11 +86,14 @@ func InitCmd() int {
 	fmt.Println("3: metamask添加网络")
 	fmt.Println("4: 币安操作")
 	fmt.Println("5: MetaMask-OKX操作")
-	fmt.Println("6: Twitter关注转发")
-	fmt.Println("7: 银河操作")
-	fmt.Println("8: Discord接受邀请")
-	fmt.Println("9: 表单操作")
+	fmt.Println("6: Taiko银河操作")
+	fmt.Println("7: OMNI银河操作")
+	fmt.Println("8: 推特绑定")
+	fmt.Println("9: 推特移除")
 	fmt.Println("10: Claim")
+	fmt.Println("11: Omni Check")
+	fmt.Println("12: Omni Mint Nft")
+
 	fmt.Printf("请输入选项:")
 	var cmd int = 0
 	fmt.Scanln(&cmd)

@@ -9,14 +9,20 @@ package main
 import (
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/src/Galxe"
+	"github.com/JianLinWei1/premint-selenium/src/OMNI"
+	"github.com/JianLinWei1/premint-selenium/src/Taiko"
+	"github.com/JianLinWei1/premint-selenium/src/premint"
+	"github.com/JianLinWei1/premint-selenium/src/util"
+	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"io"
 	"log"
 	"os"
 	"runtime/debug"
 	"strings"
-
-	"github.com/JianLinWei1/premint-selenium/src/util"
+	"sync"
 )
+
+var wg sync.WaitGroup
 
 //go:generate goversioninfo -64 -gofilepackage="main"
 func main() {
@@ -25,18 +31,24 @@ func main() {
 	})
 }
 func toMain() {
-	//cmd := wdservice.InitCmd()
-	//switch cmd {
-	//case 1:
-	//	premint.Start()
-	//	break
-	//case 7:
-	//	premint.OmniGalxe()
-	//case 9:
-	Galxe.Remove()
-	//}
-
-	//isExit()
+	cmd := wdservice.InitCmd()
+	switch cmd {
+	case 1:
+		premint.Start()
+		break
+	case 6:
+		Taiko.Taiko1Start()
+	case 7:
+		OMNI.OmniStart()
+	case 8:
+		Galxe.Bind()
+	case 9:
+		Galxe.Remove()
+	case 11:
+		OMNI.OmniCheckStart()
+	case 12:
+		OMNI.MintNft()
+	}
 }
 
 func isExit() {

@@ -1,9 +1,15 @@
-2023/07/18 03:42:21 openbitbrowser.go:59: 请求BIt: {"id":"460ea72bba41423f8d144505f4866689","loadExtensions":true,"args":[],"extractIp":true}
-2023/07/18 03:42:21 openbitbrowser.go:75: bit返回 {"success":true,"data":{"ws":"ws://127.0.0.1:57057/devtools/browser/620db1df-100a-4f67-a4f3-c4d5efe3d40a","http":"127.0.0.1:57057","coreVersion":"112","driver":"C:\\Users\\ASUS\\AppData\\Roaming\\bitbrowser\\chromedriver\\112\\chromedriver.exe","seq":1,"name":"","remark":""}}
-2023/07/18 03:42:23 initwd.go:41: http://127.0.0.1:59046/wd/hub
-2023/07/18 03:42:23 initwd.go:47: &{7425f1520f44eeadc2ed96646478a480 http://127.0.0.1:59046/wd/hub map[browserName:chrome chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:57057  <nil> <nil> []  false} goog:chromeOptions:{ [] [] [] map[] map[] <nil> 127.0.0.1:57057  <nil> <nil> []  false}] false chrome {112 0 5615 [] []}}
-2023/07/18 03:42:23 initwd.go:50: 窗口数量： 0 [B20B7C1641036D551BEDEC6BA70F7AC7]
-2023/07/18 03:42:23 RemoveTwitter.go:117: 进入个人主页成功
-2023/07/18 03:42:25 RemoveTwitter.go:129: 进入setting成功
-2023/07/18 03:42:27 RemoveTwitter.go:141: 进入ClickSocialLink成功
-2023/07/18 03:42:29 RemoveTwitter.go:47: 接受到一条错误信息： []
+2023/07/25 08:23:24 openbitbrowser.go:59: 请求BIt: {"id":"7b0eeda3683c4590a56c4584d78fe7d3","loadExtensions":true,"args":[],"extractIp":true}
+2023/07/25 08:23:28 initwd.go:41: http://127.0.0.1:51485/wd/hub
+2023/07/25 08:23:28 initwd.go:50: 窗口数量： 1 [B1FF953719507BF1FC2A83D26C05EF03 23F4BA55444E779E4013FF1BEA5BBC00]
+2023/07/25 08:23:28 closeLabels.go:16: 关闭除目标的其他标签页
+2023/07/25 08:23:32 mintNft.go:83: 银河打开成功
+2023/07/25 08:23:34 mintNft.go:94: 点击build成功
+2023/07/25 08:23:39 mintNft.go:313: 点击Mint
+2023/07/25 08:23:39 mintNft.go:163: 点击Mint成功
+2023/07/25 08:23:42 mintNft.go:348: 5
+2023/07/25 08:23:42 mintNft.go:351: 发送name成功
+2023/07/25 08:23:42 mintNft.go:377: 发送describe成功
+2023/07/25 08:23:42 mintNft.go:178: 处理页面输入成功
+2023/07/25 08:23:44 mintNft.go:403: 5
+2023/07/25 08:23:44 mintNft.go:409: 点击network成功
+2023/07/25 08:23:44 mintNft.go:189: 选择网络成功

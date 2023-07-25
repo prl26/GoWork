@@ -24,9 +24,9 @@ var wg sync.WaitGroup
 
 func Remove() {
 	url := "https://galxe.com/OmniNetwork/campaign/GCSmgUW7Fo"
-	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-425.xlsx")
-	filepout := "D:\\GoWork\\resource\\FailInfos\\removeFailInfos.xlsx"
-	TxtfileOut := "D:\\GoWork\\resource\\FailInfos\\removeFailInfos.txt"
+	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据-200.xlsx")
+	filepout := "D:\\GoWork\\resource\\FailInfos\\remove-7.24.xlsx"
+	TxtfileOut := "D:\\GoWork\\resource\\FailInfos\\remove-7.24.txt"
 	dstFile, _ := os.Create(TxtfileOut)
 	defer dstFile.Close()
 	chs := make(chan []string, len(excelInfos))
@@ -36,9 +36,7 @@ func Remove() {
 	excel.SetSheetRow("Sheet1", "A1", &title)
 
 	//定义一次开多少线程
-	var Ids []string
-	var wds []selenium.WebDriver
-	var infos []model.OMNIExcelInfo
+
 	fmt.Println("数据长度--------", len(excelInfos))
 
 	// 获取内容并写入Excel
@@ -52,80 +50,128 @@ func Remove() {
 	}()
 
 	//批量打开
-	for k, v := range excelInfos {
-		Ids = append(Ids, v.BitId)
-		fmt.Println("----------", v.Address)
-		//打开比特浏览器
-		if len(Ids) == 10 {
-			//先批量打开浏览器
-			for _, id := range Ids {
-				wg1.Add(1)
-				go func() {
-					defer wg1.Done()
-					wd, _ := wdservice.InitWd(k, id)
-					if wd != nil {
-						wds = append(wds, wd)
-						wg.Add(1)
-						infos = append(infos, v)
-					} else {
-						log.Println(v.BitId, "-----窗口打开失败")
-						dstFile.WriteString(fmt.Sprintf("%v-----窗口打开失败", v.BitId))
-						wrongData := []string{v.Address, v.Type, v.BitId, v.MetaPwd}
-						chs <- wrongData
-					}
-				}()
-			}
-			//等待一下
-			wg1.Wait()
-			//开始处理
-			for k1, v1 := range infos {
-				wg.Add(1)
-				go util.SetLog(func() {
-					defer wg.Done()
-					wd, _ := wdservice.InitWd(k1, v1.BitId)
-					err := RemoveTwitter(v, k, chs, wd, url, dstFile)
-					if err != nil {
-						log.Println("!-------!", v.BitId, "失败")
-					}
-				})
-			}
-			wg.Wait()
-			for _, v2 := range infos {
-				bitbrowser.CloseBrower(v2.BitId)
-			}
-			infos = infos[:0]
-		}
-
-	}
-
-	//单个打开
+	//var Ids []string
+	//var wds []selenium.WebDriver
+	//var infos []model.OMNIExcelInfo
 	//for k, v := range excelInfos {
+	//	Ids = append(Ids, v.BitId)
 	//	fmt.Println("----------", v.Address)
 	//	//打开比特浏览器
-	//	wd, _ := wdservice.InitWd(k, v.BitId)
-	//
-	//	if wd != nil {
-	//		wg.Add(1)
-	//		go util.SetLog(func() {
-	//			defer wg.Done()
-	//			StartOmniGalxe(v, k, chs, wd, url)
-	//			//bitbrowser.CloseBrower(v.BitId)
-	//		})
+	//	if len(Ids) == 10 {
+	//		//先批量打开浏览器
+	//		for _, id := range Ids {
+	//			time.Sleep(2 * time.Second)
+	//			wg1.Add(1)
+	//			go util.SetLog(func() {
+	//				defer wg1.Done()
+	//				wd, _ := wdservice.InitWd(k, id)
+	//				if wd != nil {
+	//					handle, _ := wd.CurrentWindowHandle()
+	//					bitbrowser.CloseOtherLabels(wd, handle)
+	//					wds = append(wds, wd)
+	//					wg.Add(1)
+	//					infos = append(infos, v)
+	//				} else {
+	//					log.Println(v.BitId, "-----窗口打开失败")
+	//					dstFile.WriteString(fmt.Sprintf("%v-----窗口打开失败", v.BitId))
+	//					wrongData := []string{v.Address, v.Type, v.BitId, v.MetaPwd}
+	//					chs <- wrongData
+	//				}
+	//			})
+	//		}
+	//		//等待一下
+	//		wg1.Wait()
+	//		//开始处理
+	//		for k1, v1 := range infos {
+	//			wg.Add(1)
+	//			go util.SetLog(func() {
+	//				defer wg.Done()
+	//				wd, _ := wdservice.InitWd(k1, v1.BitId)
+	//				err := RemoveTwitter(v, k, chs, wd, url, dstFile)
+	//				if err != nil {
+	//					log.Println("!-------!", v.BitId, "失败")
+	//				}
+	//			})
+	//		}
+	//		wg.Wait()
+	//		for _, v2 := range infos {
+	//			bitbrowser.CloseBrower(v2.BitId)
+	//		}
+	//		infos = infos[:0]
 	//	}
-	//	bitbrowser.WindowboundsByPara()
-	//	wg.Wait()
+	//
 	//}
+
+	//单个打开
+	for k, v := range excelInfos {
+		fmt.Println("----------", v.Address)
+		//打开比特浏览器
+		wd, _ := wdservice.InitWd(k, v.BitId)
+		if wd != nil {
+			handle, _ := wd.WindowHandles()
+			if len(handle) > 1 {
+				handle1 := util.GetCurrentWindowAndReturn(wd)
+				//关闭多余标签页
+				bitbrowser.CloseOtherLabels(wd, handle1)
+				wd.SwitchWindow(handle1)
+			}
+			time.Sleep(1 * time.Second)
+			wg.Add(1)
+			go util.SetLog(func() {
+				defer wg.Done()
+				err := RemoveTwitter(v, k, chs, wd, url, dstFile)
+				if err != nil {
+					log.Println("!-------!", v.BitId, "失败")
+				}
+				defer bitbrowser.CloseBrower(v.BitId)
+			})
+		}
+		wg.Wait()
+	}
 	close(chs)
 	err := excel.SaveAs(filepout)
 	if err != nil {
-		log.Println("excel 保存失败")
+		log.Println("excel 保存失败----", err)
 	}
 }
 func RemoveTwitter(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd selenium.WebDriver, url string, dstFile *os.File) (err error) {
-	//打开个人首页
 	wrongData := []string{excelInfo.Address, excelInfo.Type, excelInfo.BitId, excelInfo.MetaPwd}
-	handleNow, _ := wd.CurrentWindowHandle()
-	wd.MaximizeWindow(handleNow)
+	//打开银河链接
+
+	err = wd.Get(url)
+	if err != nil {
+		log.Println(excelInfo.BitId, "打开银河链接出错了-----", err)
+		dstFile.WriteString(fmt.Sprintf("打开银河链接出错了-----%v", excelInfo.BitId))
+		ch <- wrongData
+		return err
+	} else {
+		log.Println("银河打开成功")
+	}
+	time.Sleep(2 * time.Second)
+	//小狐狸登陆
+	nowHandle, _ := wd.WindowHandles()
+	if len(nowHandle) > 1 {
+		wd.SwitchWindow(nowHandle[1])
+		err = SmallFoxLogin(wd)
+	}
+	if err != nil {
+		log.Println("小狐狸登陆出错-----", excelInfo.BitId)
+		dstFile.WriteString(fmt.Sprintf("小狐狸登陆出错-----%v", excelInfo.BitId))
+		ch <- wrongData
+		return err
+	} else {
+		log.Println("小狐狸登陆成功")
+	}
+	time.Sleep(1 * time.Second)
+	//打开个人首页
+	handleNow, _ := wd.WindowHandles()
+	wd.SwitchWindow(handleNow[0])
+	log.Println(len(handleNow))
+	err = wd.MaximizeWindow(handleNow[0])
+	if err != nil {
+		log.Println("窗口方法失败", err)
+	}
+
 	err = OpenHomePage(wd)
 	if err != nil {
 		log.Println("进入个人主页失败")
@@ -147,9 +193,16 @@ func RemoveTwitter(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd 
 	} else {
 		log.Println("进入setting成功")
 	}
-	time.Sleep(2 * time.Second)
+	time.Sleep(3 * time.Second)
+	//这里可能有小狐狸弹窗
+	ShandleNow, _ := wd.WindowHandles()
+	if len(ShandleNow) > 1 {
+		closeSignInPop(wd, ShandleNow[1])
+		time.Sleep(2 * time.Second)
+		wd.SwitchWindow(handleNow[0])
+	}
 	//进入了 Edit Profile页面 -->找到Social Link 点击
-	err = ClickSocialLink(wd)
+	err = ClickSocialLink(wd, handleNow[0])
 	if err != nil {
 		log.Println("进入ClickSocialLink失败")
 		dstFile.WriteString(fmt.Sprintf("进入ClickSocialLink失败-----%v", excelInfo.BitId))
@@ -171,6 +224,103 @@ func RemoveTwitter(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd 
 		log.Println("点击remove成功")
 	}
 	time.Sleep(2 * time.Second)
+	return
+}
+func closeSignInPop(wd selenium.WebDriver, handle string) {
+	wd.SwitchWindow(handle)
+	SignIn, err := wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary.page-container__footer-button")
+	if err == nil {
+		SignIn.Click()
+		log.Println("关闭小狐狸弹窗")
+	}
+}
+func SmallFoxLogin(wd selenium.WebDriver) (err error) {
+	var Password selenium.WebElement
+	err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+		for i := 0; i < 10; i++ {
+			Password, err = wd.FindElement(selenium.ByXPATH, "//*[@id=\"password\"]")
+			if err != nil {
+				time.Sleep(500 * time.Millisecond)
+				continue
+			} else {
+				return true, nil
+			}
+		}
+		return false, err
+	}, 4*time.Second)
+	if err != nil {
+		log.Println("没有找到登陆按钮")
+		return err
+	} else {
+		Password.SendKeys("SHIfeng0615")
+		UnLock, err := wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-default")
+		if err == nil {
+			UnLock.Click()
+		}
+		//var SignIn1 selenium.WebElement
+		//err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+		//	for i := 0; i < 10; i++ {
+		//		SignIn1, err = wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary.page-container__footer-button")
+		//		if err != nil {
+		//			time.Sleep(1 * time.Second)
+		//			continue
+		//		} else {
+		//			return true, nil
+		//		}
+		//	}
+		//	return false, errors.New("Fail")
+		//}, 2*time.Second)
+		//if err != nil {
+		//	Next, err := wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary")
+		//	if err == nil {
+		//		Next.Click()
+		//		time.Sleep(1 * time.Second)
+		//		Connect, err := wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary.page-container__footer-button")
+		//		if err == nil {
+		//			Connect.Click()
+		//		}
+		//		var SignIn selenium.WebElement
+		//		err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+		//			for i := 0; i < 10; i++ {
+		//				log.Println("寻找signIn")
+		//				mHandle, _ := wd.WindowHandles()
+		//				log.Println(len(mHandle))
+		//				if len(mHandle) > 1 {
+		//					wd.SwitchWindow(mHandle[1])
+		//				}
+		//				SignIn, err = wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary.page-container__footer-button")
+		//				if err != nil {
+		//					time.Sleep(500 * time.Millisecond)
+		//					continue
+		//				} else {
+		//					return true, nil
+		//				}
+		//			}
+		//			return false, err
+		//		}, 3*time.Second)
+		//		if err == nil {
+		//			SignIn.Click()
+		//		}
+		//		time.Sleep(1 * time.Second)
+		//		SignIn2, err := wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary.page-container__footer-button")
+		//		if err == nil {
+		//			SignIn2.Click()
+		//		}
+		//	}
+		//} else {
+		//	err = SignIn1.Click()
+		//	if err != nil {
+		//		log.Println("metamask登陆出错")
+		//		return err
+		//	}
+		//	time.Sleep(2 * time.Second)
+		//	SignIn2, err := wd.FindElement(selenium.ByCSSSelector, ".button.btn--rounded.btn-primary.page-container__footer-button")
+		//	if err == nil {
+		//		SignIn2.Click()
+		//	}
+		//}
+
+	}
 	return
 }
 func OpenHomePage(wd selenium.WebDriver) (err error) {
@@ -222,10 +372,16 @@ func ClickSetting(wd selenium.WebDriver) (err error) {
 	}
 	return
 }
-func ClickSocialLink(wd selenium.WebDriver) (err error) {
+func ClickSocialLink(wd selenium.WebDriver, handle string) (err error) {
 	var SocialLink selenium.WebElement
 	err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
 		for i := 0; i < 10; i++ {
+			ShandleNow, _ := wd.WindowHandles()
+			if len(ShandleNow) > 1 {
+				closeSignInPop(wd, ShandleNow[1])
+				time.Sleep(2 * time.Second)
+				wd.SwitchWindow(handle)
+			}
 			SocialLink, err = wd.FindElement(selenium.ByCSSSelector, ".options-mobile-wrap")
 			if err != nil {
 				time.Sleep(1 * time.Second)

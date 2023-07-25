@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/model"
 	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
-	"github.com/JianLinWei1/premint-selenium/src/metamask"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
+	"github.com/xuri/excelize/v2"
 	"log"
-	"strconv"
+	"os"
 	"strings"
 	"time"
 )
@@ -17,62 +17,97 @@ import (
 // 通过excel获取数据打开比特浏览器
 // 银河链接
 func GalxeFinish() {
-	//url := "https://galxe.com/EchoDEX/campaign/GCDsmUSvqd"
 	url := "https://galxe.com/OmniNetwork/campaign/GCSmgUW7Fo"
-	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数1-419.xlsx")
+	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-595.xlsx")
+	filepout := "D:\\GoWork\\resource\\FailInfos\\TaikoGalxe1-jinniu200.xlsx"
+	TxtfileOut := "D:\\GoWork\\resource\\FailInfos\\TaikoGalxe1-jinniu200.txt"
+	dstFile, _ := os.Create(TxtfileOut)
+	defer dstFile.Close()
+	chs := make(chan []string, len(excelInfos))
+	var title = []string{"助记词", "私钥", "公钥", "地址", "类型", "窗口ID", "MetaMask密码"}
+	//创建新的excel文件
+	excel := excelize.NewFile()
+	excel.SetSheetRow("Sheet1", "A1", &title)
+
+	//定义一次开多少线程
+
 	fmt.Println("数据长度--------", len(excelInfos))
-	chs := make(chan string, len(excelInfos))
+
+	// 获取内容并写入Excel
+	go func() {
+		for t := 0; t < len(excelInfos); t++ {
+			data := <-chs
+			log.Println("接受到一条错误信息：", data)
+			axis := fmt.Sprintf("A%d", t+2)
+			excel.SetSheetRow("Sheet1", axis, &data)
+		}
+	}()
+
+	////单个打开
 	for k, v := range excelInfos {
 		fmt.Println("----------", v.Address)
 		//打开比特浏览器
 		wd, _ := wdservice.InitWd(k, v.BitId)
-
 		if wd != nil {
+			handle, _ := wd.WindowHandles()
+			if len(handle) > 1 {
+				handle1 := util.GetCurrentWindowAndReturn(wd)
+				//关闭多余标签页
+				bitbrowser.CloseOtherLabels(wd, handle1)
+				wd.SwitchWindow(handle1)
+			}
+			time.Sleep(1 * time.Second)
 			wg.Add(1)
 			go util.SetLog(func() {
-				go StartGalxe(v, k, chs, wd, url)
+				defer wg.Done()
+				StartGalxe(v, k, wd, url)
+
+				defer bitbrowser.CloseBrower(v.BitId)
 			})
 		}
+		wg.Wait()
 	}
-	//bitbrowser.WindowboundsByPara()
-
-	wg.Wait()
+	close(chs)
+	err := excel.SaveAs(filepout)
+	if err != nil {
+		log.Println("excel 保存失败----", err)
+	}
 }
 
-func StartGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- string, wd selenium.WebDriver, url string) {
-	log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
-	/*	打开网址登陆小狐狸
-	 */
-	metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
-	time.Sleep(1 * time.Second)
-
-	log.Println("打开银河链接")
-	err := wd.Get(url)
-	if err != nil {
-		log.Println("打开银河链接出错了")
-	} else {
-		log.Println("银河打开成功")
-
-	}
-	time.Sleep(2 * time.Second)
-
-	handle := util.GetCurrentWindowAndReturn(wd)
-	//关闭多余标签页
-	bitbrowser.CloseOtherLabels(wd, handle)
-	wd.SwitchWindow(handle)
-	time.Sleep(5 * time.Second)
-
-	ChooseNetwork(wd, "Polygon")
-	time.Sleep(2 * time.Second)
-	main_handle, err := wd.WindowHandles()
-	//如果打开了小狐狸
-	if len(main_handle) > 1 {
-		LoginRequest(wd, main_handle)
-		err = ConfirmMeta(wd, main_handle)
-	}
-	//打开所需下拉框
-	time.Sleep(2 * time.Second)
-	wd.SwitchWindow(handle)
+func StartGalxe(excelInfo model.OMNIExcelInfo, i int, wd selenium.WebDriver, url string) {
+	//log.Println("*********************开始处理第" + strconv.Itoa(i+1) + "条数据******************")
+	///*	打开网址登陆小狐狸
+	// */
+	//metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
+	//time.Sleep(1 * time.Second)
+	//
+	//log.Println("打开银河链接")
+	//err := wd.Get(url)
+	//if err != nil {
+	//	log.Println("打开银河链接出错了")
+	//} else {
+	//	log.Println("银河打开成功")
+	//
+	//}
+	//time.Sleep(2 * time.Second)
+	//
+	//handle := util.GetCurrentWindowAndReturn(wd)
+	////关闭多余标签页
+	//bitbrowser.CloseOtherLabels(wd, handle)
+	//wd.SwitchWindow(handle)
+	//time.Sleep(5 * time.Second)
+	//
+	//ChooseNetwork(wd, "Polygon")
+	//time.Sleep(2 * time.Second)
+	//main_handle, err := wd.WindowHandles()
+	////如果打开了小狐狸
+	//if len(main_handle) > 1 {
+	//	LoginRequest(wd, main_handle)
+	//	err = ConfirmMeta(wd, main_handle)
+	//}
+	////打开所需下拉框
+	//time.Sleep(2 * time.Second)
+	//wd.SwitchWindow(handle)
 
 	FindAllDropDownBox(wd, 8)
 	time.Sleep(2 * time.Second)
@@ -181,8 +216,6 @@ func ChooseNetwork(wd selenium.WebDriver, str string) error {
 		for k, v := range d1 {
 			text, _ := v.Text()
 			if strings.Contains(text, str) && !strings.Contains(text, "zk") {
-				handleNow, _ := wd.CurrentWindowHandle()
-				wd.MaximizeWindow(handleNow)
 				err = d1[k].Click()
 				if err != nil {
 					log.Println("点击失败")

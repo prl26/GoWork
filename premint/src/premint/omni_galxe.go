@@ -24,7 +24,7 @@ var wg sync.WaitGroup
 
 func OmniGalxe() {
 	url := "https://galxe.com/OmniNetwork/campaign/GCSmgUW7Fo"
-	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据1-425.xlsx")
+	excelInfos := util.GetOMNIExcelInfos("D:\\GoWork\\resource\\测试数据10-1.xlsx")
 	filepout := "D:\\GoWork\\resource\\FailInfos\\omniGalxeFailInfos.xlsx"
 	TxtfileOut := "D:\\GoWork\\resource\\FailInfos\\omniGalxeFailInfos.txt"
 	dstFile, _ := os.Create(TxtfileOut)
@@ -87,7 +87,7 @@ func OmniGalxe() {
 		Ids = append(Ids, v.BitId)
 		fmt.Println("----------", v.Address)
 		//打开比特浏览器
-		if len(Ids) == 10 {
+		if len(Ids) == 1 {
 			//先批量打开浏览器
 			for _, id := range Ids {
 				wg1.Add(1)
@@ -126,7 +126,6 @@ func OmniGalxe() {
 			}
 			infos = infos[:0]
 		}
-
 	}
 
 	//单个打开
@@ -156,14 +155,12 @@ func StartOmniGalxe(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd
 	/*	打开网址登陆小狐狸
 	 */
 	metamask.MetaMaskLogin(wd, excelInfo.MetaPwd)
-	time.Sleep(1 * time.Second)
+	time.Sleep(2 * time.Second)
 
 	handle := util.GetCurrentWindowAndReturn(wd)
 	//关闭多余标签页
 	bitbrowser.CloseOtherLabels(wd, handle)
 	wd.SwitchWindow(handle)
-	time.Sleep(2 * time.Second)
-
 	log.Println("打开银河链接")
 	err := wd.Get(url)
 	if err != nil {
@@ -255,9 +252,9 @@ func Refresh(wd selenium.WebDriver) {
 		for _, v := range refresh {
 			err := v.Click()
 			if err != nil {
-				log.Println(err)
+				log.Println("点击刷新失败", err)
 			} else {
-				log.Println("点击失败")
+				log.Println("点击刷新成功")
 			}
 			time.Sleep(1 * time.Second)
 		}
@@ -311,8 +308,7 @@ func UrlTask(wd selenium.WebDriver, num int, handle string, texts []string) erro
 					CurrentHandle1, _ := wd.CurrentWindowHandle()
 					log.Println("打开detail第一次的", CurrentHandle1)
 					//10秒等待元素点击
-					//handleNow1, _ := wd.CurrentWindowHandle()
-					//wd.MaximizeWindow(handleNow1)
+
 					time.Sleep(1 * time.Second)
 					err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
 						for i := 0; i < 10; i++ {
@@ -327,16 +323,14 @@ func UrlTask(wd selenium.WebDriver, num int, handle string, texts []string) erro
 						return false, errors.New("失败")
 					}, 10*time.Second)
 					if err != nil {
-						//bitbrowser.WindowboundsByPara()
 						log.Println("查找第二重url失败")
 						return err
 					} else {
 						//第一个任务
-						url, _ := wd.FindElement(selenium.ByCSSSelector, "a.credential-link")
-						//bitbrowser.WindowboundsByPara()
+						_, _ = wd.FindElement(selenium.ByCSSSelector, "a.credential-link")
 						switch {
 						case strings.Contains(texts[k], "Omni") && strings.Contains(texts[k], "Users"):
-							err1 := Galxe.GalxeFollow(wd, url)
+							err1 := Galxe.GalxeFollow(wd)
 							//选择主页面并关闭其他页面
 							bitbrowser.CloseOtherLabels(wd, handle)
 							wd.SwitchWindow(handle)
