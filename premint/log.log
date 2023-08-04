@@ -1,15 +1,141 @@
-2023/07/25 08:23:24 openbitbrowser.go:59: 请求BIt: {"id":"7b0eeda3683c4590a56c4584d78fe7d3","loadExtensions":true,"args":[],"extractIp":true}
-2023/07/25 08:23:28 initwd.go:41: http://127.0.0.1:51485/wd/hub
-2023/07/25 08:23:28 initwd.go:50: 窗口数量： 1 [B1FF953719507BF1FC2A83D26C05EF03 23F4BA55444E779E4013FF1BEA5BBC00]
-2023/07/25 08:23:28 closeLabels.go:16: 关闭除目标的其他标签页
-2023/07/25 08:23:32 mintNft.go:83: 银河打开成功
-2023/07/25 08:23:34 mintNft.go:94: 点击build成功
-2023/07/25 08:23:39 mintNft.go:313: 点击Mint
-2023/07/25 08:23:39 mintNft.go:163: 点击Mint成功
-2023/07/25 08:23:42 mintNft.go:348: 5
-2023/07/25 08:23:42 mintNft.go:351: 发送name成功
-2023/07/25 08:23:42 mintNft.go:377: 发送describe成功
-2023/07/25 08:23:42 mintNft.go:178: 处理页面输入成功
-2023/07/25 08:23:44 mintNft.go:403: 5
-2023/07/25 08:23:44 mintNft.go:409: 点击network成功
-2023/07/25 08:23:44 mintNft.go:189: 选择网络成功
+2023/08/04 03:57:58 openbitbrowser.go:59: 请求BIt: {"id":"05c24ffc4c65489786a3021da7d9ea13","loadExtensions":true,"args":[],"extractIp":true}
+2023/08/04 03:58:02 initwd.go:41: http://127.0.0.1:55935/wd/hub
+2023/08/04 03:58:03 initwd.go:50: 窗口数量： 1 [C7F1CDCBFF334AB693F72AC119D425D4 ABCF7D45988CA8B55FF89127C200EB44]
+2023/08/04 03:58:03 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 03:58:09 omni_galxe1.go:143: 银河打开成功
+2023/08/04 03:58:11 omni_galxe1.go:151: SHIfeng0615
+2023/08/04 03:58:11 omni_galxe1.go:160: 小狐狸登陆成功
+2023/08/04 03:58:14 omni_galxe1.go:405: 4
+2023/08/04 03:58:14 omni_galxe1.go:426: 点击follow成功
+2023/08/04 03:58:20 omni_galxe1.go:458: 第 0 条任务已经执行过了
+2023/08/04 03:58:20 omni_galxe1.go:471: 进入twitter Follow
+2023/08/04 03:58:24 follow.go:284: 到有弹窗的follow
+2023/08/04 03:58:26 follow.go:309: 开始没有弹窗的twitter follow
+2023/08/04 03:58:26 follow.go:311: [ABCF7D45988CA8B55FF89127C200EB44 CC40FA2D2DA14CD6125579458E4353EC 1E2789FD9D41E89B2A26B37D96EB2750]
+2023/08/04 03:58:26 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 03:58:32 follow.go:369: twitter follow 点击成功
+2023/08/04 03:58:34 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 03:58:40 omni_galxe1.go:458: 第 2 条任务已经执行过了
+2023/08/04 03:58:40 omni_galxe1.go:432: 向下滑动 <nil>
+2023/08/04 03:58:40 omni_galxe1.go:481: 进入Retweeters
+2023/08/04 03:58:45 follow.go:409: twitter Reweet 点击成功
+2023/08/04 03:58:47 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 03:58:47 omni_galxe1.go:176: 处理所有url成功
+2023/08/04 03:58:49 omni_galxe1.go:355: 查找到刷新按钮的数量： 2
+2023/08/04 03:58:49 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 03:58:49 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 03:58:57 omni_galxe1.go:207: 银河打开成功
+2023/08/04 03:58:59 galxe_finish.go:191: 查找成功了,button长度： 2
+2023/08/04 03:59:02 galxe_finish.go:214: 查找成功了
+2023/08/04 03:59:03 galxe_finish.go:224: 网络切换成功
+2023/08/04 03:59:09 omni_galxe.go:453: 处理第一次小狐狸登陆,button长度： 0
+2023/08/04 03:59:12 omni_galxe1.go:250: 开始Claim
+2023/08/04 03:59:14 omni_galxe1.go:300: 点击Claim2成功--新版
+2023/08/04 03:59:16 openbitbrowser.go:115: 关闭bit: {"id":"05c24ffc4c65489786a3021da7d9ea13"}
+2023/08/04 03:59:17 openbitbrowser.go:131: bit返回 {"success":true,"data":"操作成功"}
+2023/08/04 03:59:20 openbitbrowser.go:59: 请求BIt: {"id":"7211058a78d741b4a6c4faa63c965b8b","loadExtensions":true,"args":[],"extractIp":true}
+2023/08/04 03:59:24 initwd.go:41: http://127.0.0.1:56339/wd/hub
+2023/08/04 03:59:24 initwd.go:50: 窗口数量： 1 [D494D70D1152ED4699B16765680E87EF BC5CF15186DDECB031E04209A5B8749E]
+2023/08/04 03:59:24 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 03:59:30 omni_galxe1.go:143: 银河打开成功
+2023/08/04 03:59:32 omni_galxe1.go:151: SHIfeng0615
+2023/08/04 03:59:32 omni_galxe1.go:160: 小狐狸登陆成功
+2023/08/04 03:59:34 omni_galxe1.go:405: 4
+2023/08/04 03:59:34 omni_galxe1.go:426: 点击follow成功
+2023/08/04 03:59:40 omni_galxe1.go:458: 第 0 条任务已经执行过了
+2023/08/04 03:59:41 omni_galxe1.go:471: 进入twitter Follow
+2023/08/04 03:59:44 follow.go:284: 到有弹窗的follow
+2023/08/04 03:59:46 follow.go:309: 开始没有弹窗的twitter follow
+2023/08/04 03:59:46 follow.go:311: [BC5CF15186DDECB031E04209A5B8749E 0645B40318097D37E6DBD93AA01D599F 0BF7E636C47A4D1C81B1CB0A9573EAFD]
+2023/08/04 03:59:46 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 03:59:53 follow.go:369: twitter follow 点击成功
+2023/08/04 03:59:55 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:00:00 omni_galxe1.go:458: 第 2 条任务已经执行过了
+2023/08/04 04:00:00 omni_galxe1.go:432: 向下滑动 <nil>
+2023/08/04 04:00:01 omni_galxe1.go:481: 进入Retweeters
+2023/08/04 04:00:07 follow.go:409: twitter Reweet 点击成功
+2023/08/04 04:00:09 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:00:09 omni_galxe1.go:176: 处理所有url成功
+2023/08/04 04:00:11 omni_galxe1.go:355: 查找到刷新按钮的数量： 2
+2023/08/04 04:00:11 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 04:00:11 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 04:00:17 omni_galxe1.go:207: 银河打开成功
+2023/08/04 04:00:19 galxe_finish.go:191: 查找成功了,button长度： 2
+2023/08/04 04:00:23 galxe_finish.go:214: 查找成功了
+2023/08/04 04:00:24 galxe_finish.go:224: 网络切换成功
+2023/08/04 04:00:29 omni_galxe.go:453: 处理第一次小狐狸登陆,button长度： 0
+2023/08/04 04:00:32 omni_galxe1.go:250: 开始Claim
+2023/08/04 04:00:36 omni_galxe1.go:300: 点击Claim2成功--新版
+2023/08/04 04:00:38 openbitbrowser.go:115: 关闭bit: {"id":"7211058a78d741b4a6c4faa63c965b8b"}
+2023/08/04 04:00:39 openbitbrowser.go:131: bit返回 {"success":true,"data":"操作成功"}
+2023/08/04 04:00:42 openbitbrowser.go:59: 请求BIt: {"id":"dcdb51f845344c47a01b6ed75a7d302c","loadExtensions":true,"args":[],"extractIp":true}
+2023/08/04 04:00:46 initwd.go:41: http://127.0.0.1:56658/wd/hub
+2023/08/04 04:00:46 initwd.go:50: 窗口数量： 1 [46DFFBCC94BAAC49426C1920AEFEEE8D 610C9D408855264142606284EF99043C]
+2023/08/04 04:00:46 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:00:58 omni_galxe1.go:143: 银河打开成功
+2023/08/04 04:01:00 omni_galxe1.go:151: SHIfeng0615
+2023/08/04 04:01:00 omni_galxe1.go:160: 小狐狸登陆成功
+2023/08/04 04:01:02 omni_galxe1.go:405: 4
+2023/08/04 04:01:02 omni_galxe1.go:426: 点击follow成功
+2023/08/04 04:01:08 omni_galxe1.go:458: 第 0 条任务已经执行过了
+2023/08/04 04:01:09 omni_galxe1.go:471: 进入twitter Follow
+2023/08/04 04:01:12 follow.go:284: 到有弹窗的follow
+2023/08/04 04:01:14 follow.go:309: 开始没有弹窗的twitter follow
+2023/08/04 04:01:14 follow.go:311: [610C9D408855264142606284EF99043C F95EA9959730939B6F33465F3E84370A D1FA35F46D7B9EF4E3467DA796F9640E]
+2023/08/04 04:01:14 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:01:21 follow.go:369: twitter follow 点击成功
+2023/08/04 04:01:23 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:01:28 omni_galxe1.go:458: 第 2 条任务已经执行过了
+2023/08/04 04:01:28 omni_galxe1.go:432: 向下滑动 <nil>
+2023/08/04 04:01:28 omni_galxe1.go:481: 进入Retweeters
+2023/08/04 04:01:34 follow.go:409: twitter Reweet 点击成功
+2023/08/04 04:01:36 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:01:36 omni_galxe1.go:176: 处理所有url成功
+2023/08/04 04:01:38 omni_galxe1.go:355: 查找到刷新按钮的数量： 2
+2023/08/04 04:01:38 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 04:01:38 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 04:01:53 omni_galxe1.go:207: 银河打开成功
+2023/08/04 04:01:55 galxe_finish.go:191: 查找成功了,button长度： 2
+2023/08/04 04:01:58 galxe_finish.go:214: 查找成功了
+2023/08/04 04:01:59 galxe_finish.go:224: 网络切换成功
+2023/08/04 04:02:04 omni_galxe.go:453: 处理第一次小狐狸登陆,button长度： 0
+2023/08/04 04:02:07 omni_galxe1.go:250: 开始Claim
+2023/08/04 04:02:11 omni_galxe1.go:300: 点击Claim2成功--新版
+2023/08/04 04:02:13 openbitbrowser.go:115: 关闭bit: {"id":"dcdb51f845344c47a01b6ed75a7d302c"}
+2023/08/04 04:02:15 openbitbrowser.go:131: bit返回 {"success":true,"data":"操作成功"}
+2023/08/04 04:02:18 openbitbrowser.go:59: 请求BIt: {"id":"360519b67ef24b17b7942eff69155942","loadExtensions":true,"args":[],"extractIp":true}
+2023/08/04 04:02:21 initwd.go:41: http://127.0.0.1:57070/wd/hub
+2023/08/04 04:02:21 initwd.go:50: 窗口数量： 1 [8A15476564F706CC48723D9C35A0E086 8858DCD4EAAFC395669C7B7568738665]
+2023/08/04 04:02:21 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:02:32 omni_galxe1.go:143: 银河打开成功
+2023/08/04 04:02:34 omni_galxe1.go:151: SHIfeng0615
+2023/08/04 04:02:34 omni_galxe1.go:160: 小狐狸登陆成功
+2023/08/04 04:02:36 omni_galxe1.go:405: 4
+2023/08/04 04:02:36 omni_galxe1.go:426: 点击follow成功
+2023/08/04 04:02:42 omni_galxe1.go:458: 第 0 条任务已经执行过了
+2023/08/04 04:02:43 omni_galxe1.go:471: 进入twitter Follow
+2023/08/04 04:02:46 follow.go:284: 到有弹窗的follow
+2023/08/04 04:02:48 follow.go:309: 开始没有弹窗的twitter follow
+2023/08/04 04:02:48 follow.go:311: [8858DCD4EAAFC395669C7B7568738665 9752F5D7B45C41B55246A9B9A7438E28 98982658913253978CE5DDEBCCEB0A48]
+2023/08/04 04:02:48 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:02:55 follow.go:369: twitter follow 点击成功
+2023/08/04 04:02:57 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:03:02 omni_galxe1.go:458: 第 2 条任务已经执行过了
+2023/08/04 04:03:02 omni_galxe1.go:432: 向下滑动 <nil>
+2023/08/04 04:03:03 omni_galxe1.go:481: 进入Retweeters
+2023/08/04 04:03:08 follow.go:409: twitter Reweet 点击成功
+2023/08/04 04:03:10 closeLabels.go:16: 关闭除目标的其他标签页
+2023/08/04 04:03:10 omni_galxe1.go:176: 处理所有url成功
+2023/08/04 04:03:12 omni_galxe1.go:355: 查找到刷新按钮的数量： 2
+2023/08/04 04:03:12 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 04:03:12 omni_galxe1.go:362: 点击刷新按钮成功
+2023/08/04 04:03:20 omni_galxe1.go:207: 银河打开成功
+2023/08/04 04:03:22 galxe_finish.go:191: 查找成功了,button长度： 2
+2023/08/04 04:03:25 galxe_finish.go:214: 查找成功了
+2023/08/04 04:03:26 galxe_finish.go:224: 网络切换成功
+2023/08/04 04:03:32 omni_galxe.go:453: 处理第一次小狐狸登陆,button长度： 0
+2023/08/04 04:03:35 omni_galxe1.go:250: 开始Claim
+2023/08/04 04:03:37 omni_galxe1.go:300: 点击Claim2成功--新版
+2023/08/04 04:03:39 openbitbrowser.go:115: 关闭bit: {"id":"360519b67ef24b17b7942eff69155942"}
+2023/08/04 04:03:40 openbitbrowser.go:131: bit返回 {"success":true,"data":"操作成功"}
+2023/08/04 04:03:43 openbitbrowser.go:59: 请求BIt: {"id":"4b4a0d313d3145c185840e8d39b9e1dd","loadExtensions":true,"args":[],"extractIp":true}

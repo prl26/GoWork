@@ -113,7 +113,7 @@ func TwitterTweet(wd selenium.WebDriver) error {
 			}
 		}
 		return false, errors.New("失败")
-	}, 10*time.Second)
+	}, 5*time.Second)
 	if err != nil {
 		log.Println("查找follow失败")
 		return err
@@ -146,7 +146,7 @@ func TwitterLike(wd selenium.WebDriver) error {
 			}
 		}
 		return false, errors.New("失败")
-	}, 10*time.Second)
+	}, 5*time.Second)
 	if err != nil {
 		log.Println("查找Like失败")
 		return err

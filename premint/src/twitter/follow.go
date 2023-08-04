@@ -8,15 +8,14 @@ package twitter
 
 import (
 	"errors"
-	"log"
-	"strconv"
-	"strings"
-	"time"
-
 	"github.com/JianLinWei1/premint-selenium/src/bitbrowser"
 	"github.com/JianLinWei1/premint-selenium/src/util"
 	"github.com/JianLinWei1/premint-selenium/src/wdservice"
 	"github.com/tebeka/selenium"
+	"log"
+	"strconv"
+	"strings"
+	"time"
 )
 
 func StartFllowAndTweet() {
@@ -50,7 +49,6 @@ func toFllowAndTweet(ch chan string, i int, ei ExcelInfoTweet, wd selenium.WebDr
 	} else if ei.Tp == 2 {
 		Retweet(wd)
 	}
-
 	ch <- "第" + strconv.Itoa(i) + "条数据执行完成"
 }
 
@@ -174,7 +172,6 @@ func TweetTwitter(wd selenium.WebDriver, div selenium.WebElement) {
 		Retweet(wd)
 		//wd.Close()
 		wd.SwitchWindow(hanle)
-
 	}
 	//util.GetWind(0, wd)
 	wd.SwitchWindow(hanle)
@@ -259,14 +256,12 @@ func findDiag(wd selenium.WebDriver) {
 	}, 20*time.Second)
 
 }
-func TwitterFollow(wd selenium.WebDriver) error {
+func TwitterFollow(wd selenium.WebDriver) (err error) {
 	//切换到新打开的页面
 	handles1, _ := wd.WindowHandles()
 	wd.SwitchWindow(handles1[len(handles1)-1])
-	err := wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+	err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
 		for i := 0; i < 10; i++ {
-			//css-901oao r-1awozwy r-jwli3a r-6koalj r-18u37iz r-16y2uox r-37j5jr r-a023e6 r-b88u0q r-1777fci r-rjixqe r-bcqeeo r-q4m81j r-qvutc0
-			//_, err := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-16y2uox.r-6gpygo.r-peo1c.r-1ps3wis.r-1ny4l3l.r-1udh08x.r-1guathk.r-1udbk01.r-o7ynqc.r-6416eg.r-lrvibr.r-3s2u2q")
 			handles1, _ := wd.WindowHandles()
 			wd.SwitchWindow(handles1[len(handles1)-1])
 			_, err := wd.FindElement(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
@@ -278,25 +273,88 @@ func TwitterFollow(wd selenium.WebDriver) error {
 			}
 		}
 		return false, errors.New("失败")
-	}, 10*time.Second)
+	}, 5*time.Second)
 	if err != nil {
 		log.Println("查找follow失败")
 		return err
 	} else {
-		time.Sleep(1 * time.Second)
-		button, _ := wd.FindElement(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
-		err := button.Click()
+		log.Println("到有弹窗的follow")
+		time.Sleep(2 * time.Second)
+		button, err := wd.FindElement(selenium.ByCSSSelector, ".css-901oao.r-1awozwy.r-jwli3a.r-6koalj.r-18u37iz.r-16y2uox.r-37j5jr.r-a023e6.r-b88u0q.r-1777fci.r-rjixqe.r-bcqeeo.r-q4m81j.r-qvutc0")
+		if err == nil {
+			buttontext, err := button.FindElement(selenium.ByCSSSelector, ".css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0")
+			if err != nil {
+				log.Println("失败")
+				return err
+			}
+			detail, err := buttontext.Text()
+			if err != nil {
+				log.Println("失败")
+				return err
+			}
+			if detail == "Follow" {
+				err := button.Click()
+				if err != nil {
+					log.Println("twitter follow 点击失败")
+					return err
+				} else {
+					log.Println("twitter follow 点击成功")
+					return nil
+				}
+			}
+		}
+		log.Println("开始没有弹窗的twitter follow")
+		_ = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
+			for i := 0; i < 10; i++ {
+				_, err = wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-2yi16.r-1qi8awa.r-1ny4l3l.r-ymttw5.r-o7ynqc.r-6416eg.r-lrvibr")
+				if err != nil {
+					time.Sleep(1 * time.Second)
+					continue
+				} else {
+					return true, nil
+				}
+			}
+			return false, errors.New("fail")
+		}, 10*time.Second)
+		button, err = wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-2yi16.r-1qi8awa.r-1ny4l3l.r-ymttw5.r-o7ynqc.r-6416eg.r-lrvibr")
 		if err != nil {
-			log.Println("twitter follow 点击失败")
+			button1, err := wd.FindElement(selenium.ByCSSSelector, ".css-18t94o4.css-1dbjc4n.r-1niwhzg.r-1ets6dv.r-sdzlij.r-1phboty.r-rs99b7.r-2yi16.r-1qi8awa.r-1ny4l3l.r-ymttw5.r-o7ynqc.r-6416eg.r-lrvibr")
+			if err != nil {
+				return err
+			}
+			isFollow, _ := button1.GetAttribute("aria-label")
+			if strings.Contains(isFollow, "Following") {
+				log.Println("你已经follow过了")
+				return nil
+			}
 			return err
-		} else {
-			log.Println("twitter Like 点击成功")
+		}
+		buttontext, err := button.FindElement(selenium.ByCSSSelector, ".css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0")
+		if err != nil {
+			return err
+		}
+		detail, err := buttontext.Text()
+		if err != nil {
+			return err
+		}
+		if detail == "Follow" {
+			err := button.Click()
+			if err != nil {
+				log.Println("twitter follow 点击失败")
+				return err
+			} else {
+				log.Println("twitter follow 点击成功")
+				return nil
+			}
+		}
+		if detail == "Following" {
+			log.Println("你已经follow了")
+			return nil
 		}
 	}
-	return err
+	return errors.New("没有follow到")
 }
 func TwitterReweet(wd selenium.WebDriver) error {
-
 	//切换到新打开的页面
 	handles1, _ := wd.WindowHandles()
 	wd.SwitchWindow(handles1[len(handles1)-1])
@@ -313,7 +371,7 @@ func TwitterReweet(wd selenium.WebDriver) error {
 			}
 		}
 		return false, errors.New("失败")
-	}, 10*time.Second)
+	}, 5*time.Second)
 	if err != nil {
 		log.Println("查找Reweet失败")
 		return err

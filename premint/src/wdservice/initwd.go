@@ -86,13 +86,14 @@ func InitCmd() int {
 	fmt.Println("3: metamask添加网络")
 	fmt.Println("4: 币安操作")
 	fmt.Println("5: MetaMask-OKX操作")
-	fmt.Println("6: Taiko银河操作")
-	fmt.Println("7: OMNI银河操作")
+	fmt.Println("7: 银河任务")
 	fmt.Println("8: 推特绑定")
 	fmt.Println("9: 推特移除")
 	fmt.Println("10: Claim")
 	fmt.Println("11: Omni Check")
 	fmt.Println("12: Omni Mint Nft")
+	fmt.Println("13: 银河绑定邮箱")
+	fmt.Println("14: 推特绑定Check")
 
 	fmt.Printf("请输入选项:")
 	var cmd int = 0

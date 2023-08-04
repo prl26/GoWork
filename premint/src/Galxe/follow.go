@@ -2,6 +2,7 @@ package Galxe
 
 import (
 	"errors"
+	TwitterBind2 "github.com/JianLinWei1/premint-selenium/src/Galxe1/TwitterBind"
 	"github.com/tebeka/selenium"
 	"log"
 	"time"
@@ -11,7 +12,7 @@ func GalxeFollow(wd selenium.WebDriver) (err error) {
 	time.Sleep(1 * time.Second)
 	main_handle, _ := wd.WindowHandles()
 	if len(main_handle) > 3 {
-		LoginRequest(wd, main_handle)
+		err = TwitterBind2.CloseSignInPop(wd)
 	}
 	//切换到新打开的页面
 	time.Sleep(1 * time.Second)
@@ -31,7 +32,7 @@ func GalxeFollow(wd selenium.WebDriver) (err error) {
 	time.Sleep(2 * time.Second)
 	err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
 		for i := 0; i < 10; i++ {
-			_, err = wd.FindElement(selenium.ByCSSSelector, ".spine-player-canvas")
+			_, err = wd.FindElement(selenium.ByCSSSelector, ".spine-player-canvas") //spine-player-canvas
 			if err != nil {
 				ClosePop(wd)
 				time.Sleep(1 * time.Second)
@@ -41,7 +42,7 @@ func GalxeFollow(wd selenium.WebDriver) (err error) {
 			}
 		}
 		return false, errors.New("失败")
-	}, 10*time.Second)
+	}, 5*time.Second)
 	if err != nil {
 		log.Println("查找follow按钮出错了")
 		return err

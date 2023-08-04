@@ -9,6 +9,7 @@ package main
 import (
 	"fmt"
 	"github.com/JianLinWei1/premint-selenium/src/Galxe"
+	"github.com/JianLinWei1/premint-selenium/src/Galxe1/TwitterBind"
 	"github.com/JianLinWei1/premint-selenium/src/OMNI"
 	"github.com/JianLinWei1/premint-selenium/src/Taiko"
 	"github.com/JianLinWei1/premint-selenium/src/premint"
@@ -41,13 +42,15 @@ func toMain() {
 	case 7:
 		OMNI.OmniStart()
 	case 8:
-		Galxe.Bind()
+		TwitterBind.RemoveAndBind()
 	case 9:
 		Galxe.Remove()
 	case 11:
 		OMNI.OmniCheckStart()
-	case 12:
-		OMNI.MintNft()
+	case 13:
+		Galxe.VerifyEmail()
+	case 14:
+		TwitterBind.Check()
 	}
 }
 

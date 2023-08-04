@@ -130,6 +130,7 @@ func TwitterBind(excelInfo model.OMNIExcelInfo, i int, ch chan<- []string, wd se
 		ch <- wrongData
 		return err
 	}
+
 	err = TweetTwitter(wd)
 	if err != nil {
 		log.Println("Tweet Twitter失败")

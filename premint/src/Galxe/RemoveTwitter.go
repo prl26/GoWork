@@ -353,6 +353,7 @@ func ClickSetting(wd selenium.WebDriver) (err error) {
 	var settingButton selenium.WebElement
 	err = wd.WaitWithTimeout(func(wd selenium.WebDriver) (bool, error) {
 		for i := 0; i < 10; i++ {
+
 			settingButton, err = wd.FindElement(selenium.ByCSSSelector, ".account-setting-menu")
 			if err != nil {
 				time.Sleep(1 * time.Second)
@@ -368,9 +369,9 @@ func ClickSetting(wd selenium.WebDriver) (err error) {
 	} else {
 		//找到具有setting属性的div
 		sbutton, _ := settingButton.FindElement(selenium.ByXPATH, "//div[contains(text(), 'Setting')]")
-		sbutton.Click()
+		err = sbutton.Click()
 	}
-	return
+	return err
 }
 func ClickSocialLink(wd selenium.WebDriver, handle string) (err error) {
 	var SocialLink selenium.WebElement
